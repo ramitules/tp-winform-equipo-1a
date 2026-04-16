@@ -1,0 +1,6 @@
+﻿* Se descartan las interfaces ya que no hay muchos objetos
+* Los setters validan los datos que se ingresan a los atributos
+* El frontend valida cada caracter en cada campo (confirmar si se puede)
+* Crear clase base Articulos + atributos
+* Ir subiendo todos los cambios por mas minimos que sean a traves de commits y push
+* Antes de sentarse a trabajar, actualizar repo
