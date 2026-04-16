@@ -48,8 +48,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CATALOGO_DB_v3.sql" />
     <Content Include="Documentacion\Minutas 15-04.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
