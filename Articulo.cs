@@ -35,6 +35,36 @@ namespace TPWinForm_equipo_1A
       }
       get { return nombre; }
     }
-    
-  }
+
+    private string descripcion;
+    public string Descripcion
+    {
+        set
+        {
+        if (value.Length < 50)
+            {
+            descripcion = value;
+            }
+           
+        }
+        get { return descripcion; }
+    }
+
+    private decimal precio;
+    public decimal Precio
+    {
+        set { 
+            if (value > 0)
+            {
+                precio = value;
+            }
+            else
+            {
+                precio = 0;
+            }
+        }
+        get { return precio; }
+    }
+
+   }
 }
