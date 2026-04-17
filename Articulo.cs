@@ -13,27 +13,27 @@ namespace TPWinForm_equipo_1A
     private string codArticulo;
     public string CodArticulo
     {
-      set
-      {
+        set
+        {
         if (value.Length < 50)
         {
-          codArticulo = value;
+            codArticulo = value;
         }
-      }
-      get { return codArticulo; }
+        }
+        get { return codArticulo; }
     }
 
     private string nombre;
     public string Nombre
     {
-      set
-      {
+        set
+        {
         if (value.Length < 50)
         {
-          nombre = value;
+            nombre = value;
         }
-      }
-      get { return nombre; }
+        }
+        get { return nombre; }
     }
 
     private string descripcion;
@@ -66,5 +66,11 @@ namespace TPWinForm_equipo_1A
         get { return precio; }
     }
 
-   }
+    public Marca Marca;
+    public Categoria Categoria;
+
+    public string Imagen { get; set; }
+
+    }
+    
 }
