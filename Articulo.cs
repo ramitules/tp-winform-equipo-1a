@@ -69,7 +69,7 @@ namespace TPWinForm_equipo_1A
     public Marca Marca;
     public Categoria Categoria;
 
-    public string Imagen { get; set; }
+    public List<string> Imagen = new List<string>();
 
     }
     

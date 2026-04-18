@@ -23,5 +23,9 @@ namespace TPWinForm_equipo_1A
                 }
             }
         }
+        public override string ToString()
+        {
+            return descripcion;
+        }
 }
 }
