@@ -39,5 +39,10 @@ namespace TPWinForm_equipo_1A
 
         tbxPrueba.Text = texto;
     }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
