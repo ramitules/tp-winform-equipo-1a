@@ -13,7 +13,7 @@ namespace TPWinForm_equipo_1A
     {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new VentanaPrincipal()); //Linea agregada para que inicialice la ventana principal
+            Application.Run(new FrmVentanaPrincipal()); //Linea agregada para que inicialice la ventana principal
     }
   }
 }
