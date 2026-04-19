@@ -32,14 +32,16 @@
             this.btnArticuloAgregar = new System.Windows.Forms.Button();
             this.btnArticuloModificar = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.dgvArticulos = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             this.SuspendLayout();
             // 
             // tbxPrueba
             // 
-            this.tbxPrueba.Location = new System.Drawing.Point(248, 89);
+            this.tbxPrueba.Location = new System.Drawing.Point(547, 334);
             this.tbxPrueba.Multiline = true;
             this.tbxPrueba.Name = "tbxPrueba";
-            this.tbxPrueba.Size = new System.Drawing.Size(452, 295);
+            this.tbxPrueba.Size = new System.Drawing.Size(153, 50);
             this.tbxPrueba.TabIndex = 0;
             // 
             // btnArticuloAgregar
@@ -71,19 +73,29 @@
             this.button3.Text = "button3";
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // VentanaPrincipal
+            // dgvArticulos
+            // 
+            this.dgvArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvArticulos.Location = new System.Drawing.Point(175, 76);
+            this.dgvArticulos.Name = "dgvArticulos";
+            this.dgvArticulos.Size = new System.Drawing.Size(558, 150);
+            this.dgvArticulos.TabIndex = 4;
+            // 
+            // FrmVentanaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.dgvArticulos);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.btnArticuloModificar);
             this.Controls.Add(this.btnArticuloAgregar);
             this.Controls.Add(this.tbxPrueba);
-            this.Name = "VentanaPrincipal";
+            this.Name = "FrmVentanaPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestion de articulos";
             this.Load += new System.EventHandler(this.VentanaPrincipal_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -95,5 +107,6 @@
         private System.Windows.Forms.Button btnArticuloAgregar;
         private System.Windows.Forms.Button btnArticuloModificar;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.DataGridView dgvArticulos;
     }
 }
