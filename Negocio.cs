@@ -14,11 +14,11 @@ namespace TPWinForm_equipo_1A
         SqlCommand comando = new SqlCommand();
         SqlDataReader lector;
 
-        public List<Articulo> lisar()
+        public List<Articulo> listar()
         {
             try
             {
-                conexion.ConnectionString = "server=(localdb)\\MSSQLLocalDB;Initial Catalog=CATALOGO_P3_DB;Integrated Security=True";
+                conexion.ConnectionString = "Server=192.168.0.17,1433;Database=CATALOGO_P3_DB;User Id=sa;Password=Siddharthasanman!;TrustServerCertificate=true;";
                 comando.CommandType = System.Data.CommandType.Text;
                 comando.CommandText = "select A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Id AS MarcaId, M.Descripcion AS Marca, A.Precio, C.Id AS CategoriaId, C.Descripcion AS Categoria, I.ImagenUrl from ARTICULOS A INNER JOIN MARCAS M ON A.IdMarca = M.Id INNER JOIN CATEGORIAS C ON A.IdCategoria = C.Id INNER JOIN IMAGENES I ON A.Id = I.IdArticulo";
                 comando.Connection = conexion;
