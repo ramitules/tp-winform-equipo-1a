@@ -8,22 +8,20 @@ namespace Dominio
 {
     public class Marca
     {
-        private int id;
-        public int Id { get; set; }
-
-        private string nombre;
-        public string Nombre {
-            set
+        public int Id { get; }
+        public string Nombre { get; }
+        public Marca(int id, string nombre)
+        {
+            if (id <= 0)
             {
-                if (value.Length < 50)
-                {
-                    nombre = value;
-                }
+                throw new ArgumentOutOfRangeException("id", id, "Se esta intentando asignar un ID menor o igual a cero en un objeto Marca");
             }
-            get
+            if (nombre.Length >= 50)
             {
-                return nombre;
-            }         
+                throw new ArgumentOutOfRangeException("nombre", nombre, "Se esta intentando asignar un nombre demasiado largo en un objeto Marca");
+            }
+            Id = id;
+            Nombre = nombre;
         }
 
         //Sobreescribo el metodo ToString para que me muestre la marca en vez del tipo de dato.

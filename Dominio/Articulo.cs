@@ -66,8 +66,8 @@ namespace Dominio
         get { return precio; }
     }
 
-    public Marca Marca;
-    public Categoria Categoria;
+    public Marca Marca { get; set; }
+    public Categoria Categoria { get; set; }
 
     public List<string> Imagen = new List<string>();
 
