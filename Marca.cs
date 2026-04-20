@@ -20,11 +20,16 @@ namespace TPWinForm_equipo_1A
                     nombre = value;
                 }
             }
-            get { 
-                return nombre; 
-            }
-        
-        
+            get
+            {
+                return nombre;
+            }         
+        }
+
+        //Sobreescribo el metodo ToString para que me muestre la marca en vez del tipo de dato.
+        public override string ToString()
+        {
+            return Nombre;
         }
     }
 }
