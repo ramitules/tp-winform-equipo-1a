@@ -9,6 +9,10 @@ namespace TPWinForm_equipo_1A
 {
   internal class Program
   {
+    /// <summary>
+    /// Punto de entrada principal para la aplicación.
+    /// </summary>
+    [STAThread]
     static void Main(string[] args)
     {
             Application.EnableVisualStyles();

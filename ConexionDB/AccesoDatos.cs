@@ -6,10 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
 
+
 namespace ConexionDB
 {
     public class AccesoDatos
     {
+        private Dictionary<string, string> variables = VariablesEntorno.CargarVariables();
         private SqlConnection conexion;
         private SqlCommand comando;
         private SqlDataReader lector;
@@ -21,7 +23,16 @@ namespace ConexionDB
         //Constructor 
         public AccesoDatos()
         {
-            conexion = new SqlConnection("Server=192.168.0.17,1433;Database=CATALOGO_P3_DB;User Id=sa;Password=Siddharthasanman!;TrustServerCertificate=true;");
+            string server = variables["DB_HOST"];
+            string puerto = variables["DB_PORT"];
+            string db = variables["DB_NAME"];
+            string user = variables["DB_USER"];
+            string contra = variables["DB_PASSWORD"];
+
+            // Añadir puerto a la cadena de servidor si existe
+            string serverCompleto = string.IsNullOrEmpty(puerto) ? server : server + "," + puerto;
+
+            conexion = new SqlConnection($"Server={serverCompleto};Database={db};User Id={user};Password={contra};TrustServerCertificate=true;");
             comando = new SqlCommand();
         }
 
