@@ -30,3 +30,16 @@ El programa debe permitir administrar las Marcas y Categorías disponibles en el
 Construir las clases necesarias para el modelo de dicha aplicación junto a las ventanas con las que contará y su navegación.
 ### Etapa 2
 Construir la interacción con la base de datos y validaciones correspondiente para dar vida a la funcionalidad.
+
+## Configuracion
+
+1. Clonar el proyecto
+2. Copiar `.env.example` a `.env`
+3. Editar `.env` con tus credenciales de SQL Server
+4. Ejecuta la aplicación
+
+## Errores
+En caso de que el archivo `.env` no se reconozca:
+1. Click derecho en `.env` -> Propiedades.
+2. Accion de compilacion -> Contenido.
+3. Copiar en el directorio de salida -> Copiar si es posterior.
