@@ -45,6 +45,7 @@
             this.numPrecio = new System.Windows.Forms.NumericUpDown();
             this.btnPrueba = new System.Windows.Forms.Button();
             this.txtCargaArticulo = new System.Windows.Forms.TextBox();
+            this.btnCancelar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numPrecio)).BeginInit();
             this.SuspendLayout();
             // 
@@ -119,6 +120,7 @@
             this.btnAgregarArticulo.TabIndex = 7;
             this.btnAgregarArticulo.Text = "Agregar Artículo";
             this.btnAgregarArticulo.UseVisualStyleBackColor = true;
+            this.btnAgregarArticulo.Click += new System.EventHandler(this.btnAgregarArticulo_Click);
             // 
             // txtBoxCodArticulo
             // 
@@ -197,11 +199,22 @@
             this.txtCargaArticulo.Size = new System.Drawing.Size(261, 325);
             this.txtCargaArticulo.TabIndex = 18;
             // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Location = new System.Drawing.Point(554, 392);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(106, 26);
+            this.btnCancelar.TabIndex = 19;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
             // FrmArticuloAgregar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(740, 436);
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.txtCargaArticulo);
             this.Controls.Add(this.btnPrueba);
             this.Controls.Add(this.numPrecio);
@@ -247,5 +260,6 @@
         private System.Windows.Forms.NumericUpDown numPrecio;
         private System.Windows.Forms.Button btnPrueba;
         private System.Windows.Forms.TextBox txtCargaArticulo;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }

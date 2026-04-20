@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace TPWinForm_equipo_1A
 {
     public partial class FrmArticuloAgregar : Form
@@ -60,6 +61,25 @@ namespace TPWinForm_equipo_1A
 
             txtCargaArticulo.Text = texto;
 
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Close();
+
+        }
+
+        private void btnAgregarArticulo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }
