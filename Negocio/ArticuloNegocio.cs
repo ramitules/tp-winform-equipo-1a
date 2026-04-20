@@ -35,12 +35,11 @@ namespace Negocio
                     aux.Nombre = (string)Datos.Lector["Nombre"];
                     aux.Descripcion = (string)Datos.Lector["Descripcion"];
                     aux.Precio = (decimal)Datos.Lector["Precio"];
-                    aux.Marca = new Marca();
-                    aux.Marca.Id = (int)Datos.Lector["MarcaID"];
-                    aux.Marca.Nombre = (string)Datos.Lector["Marca"];
-                    aux.Categoria = new Categoria();
-                    aux.Categoria.Id = (int)Datos.Lector["CategoriaID"];
-                    aux.Categoria.Descripcion = (string)Datos.Lector["Categoria"];
+
+                    aux.Marca = new Marca((int)Datos.Lector["MarcaID"], (string)Datos.Lector["Marca"]);
+
+                    aux.Categoria = new Categoria((int)Datos.Lector["CategoriaID"], (string)Datos.Lector["Categoria"]);
+
                     aux.Imagen.Add((string)Datos.Lector["ImagenUrl"]);
 
                     lista.Add(aux);
