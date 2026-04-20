@@ -36,7 +36,18 @@ namespace TPWinForm_equipo_1A
         private void btnPrueba_Click(object sender, EventArgs e)
         {
             Articulo articulo = new Articulo();
-      
+
+            try
+            {
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
             String codArticulo = txtBoxCodArticulo.Text;
             String nombre = txtBoxNombre.Text;
             String descripcion = txtBoxDescripcion.Text;

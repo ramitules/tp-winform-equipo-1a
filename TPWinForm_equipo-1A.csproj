@@ -50,7 +50,9 @@
   <ItemGroup>
     <Compile Include="Articulo.cs" />
     <Compile Include="Categoria.cs" />
-    <Compile Include="Datos.cs" />
+    <Compile Include="AccesoDatos.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="Class2.cs" />
     <Compile Include="FrmArticuloAgregar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,7 +66,7 @@
       <DependentUpon>FrmVentanaPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="Marca.cs" />
-    <Compile Include="Negocio.cs" />
+    <Compile Include="ArticuloNegocio.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

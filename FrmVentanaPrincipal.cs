@@ -21,7 +21,7 @@ namespace TPWinForm_equipo_1A
     {
         try
         {
-            Negocio negocio = new Negocio();
+            ArticuloNegocio negocio = new ArticuloNegocio();
             dgvArticulos.DataSource = negocio.listar();
             //throw new Exception("Mensaje de prueba - Error al cargar los datos"); - Esta linea es para ver que captura el error y lo muestra son trabar el progrma.
         }
