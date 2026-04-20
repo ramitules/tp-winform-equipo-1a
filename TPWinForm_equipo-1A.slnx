@@ -1,3 +1,6 @@
 <Solution>
+  <Project Path="ConexionDB/ConexionDB.csproj" Id="ca6123cb-3d1d-464f-ae8f-3da22796c367" />
+  <Project Path="Dominio/Dominio.csproj" Id="b614c690-3a9b-4c1a-9ed0-d79a1779462c" />
+  <Project Path="Negocio/Negocio.csproj" Id="a1422836-ff52-4efc-9bfd-ebb3632ebb46" />
   <Project Path="TPWinForm_equipo-1A.csproj" Id="868e2056-982f-43c0-9b1e-c0dbbd52da4c" />
 </Solution>

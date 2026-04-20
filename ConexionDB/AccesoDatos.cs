@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
 
-namespace TPWinForm_equipo_1A
+namespace ConexionDB
 {
     public class AccesoDatos
     {
@@ -21,7 +21,7 @@ namespace TPWinForm_equipo_1A
         //Constructor 
         public AccesoDatos()
         {
-            conexion = new SqlConnection("server=(localdb)\\MSSQLLocalDB;Initial Catalog=CATALOGO_P3_DB;Integrated Security=True");
+            conexion = new SqlConnection("Server=192.168.0.17,1433;Database=CATALOGO_P3_DB;User Id=sa;Password=Siddharthasanman!;TrustServerCertificate=true;");
             comando = new SqlCommand();
         }
 

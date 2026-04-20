@@ -4,30 +4,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TPWinForm_equipo_1A
+namespace Dominio
 {
-    internal class Categoria
+    public class Marca
     {
+        private int id;
         public int Id { get; set; }
-        
-        private string descripcion;
-        public string Descripcion 
-        { 
-            get  { return descripcion; }
 
+        private string nombre;
+        public string Nombre {
             set
-            { 
+            {
                 if (value.Length < 50)
                 {
-                    descripcion = value;
+                    nombre = value;
                 }
             }
+            get
+            {
+                return nombre;
+            }         
         }
 
         //Sobreescribo el metodo ToString para que me muestre la marca en vez del tipo de dato.
         public override string ToString()
         {
-            return descripcion;
+            return Nombre;
         }
-}
+    }
 }
