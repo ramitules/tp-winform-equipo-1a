@@ -36,12 +36,6 @@ namespace ConexionDB
             comando = new SqlCommand();
         }
 
-        /*      conexion.ConnectionString = "Server=192.168.0.17,1433;Database=CATALOGO_P3_DB;User Id=sa;Password=Siddharthasanman!;TrustServerCertificate=true;";
-                comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "select A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Id AS MarcaId, M.Descripcion AS Marca, A.Precio, C.Id AS CategoriaId, C.Descripcion AS Categoria, I.ImagenUrl from ARTICULOS A INNER JOIN MARCAS M ON A.IdMarca = M.Id INNER JOIN CATEGORIAS C ON A.IdCategoria = C.Id INNER JOIN IMAGENES I ON A.Id = I.IdArticulo";
-                comando.Connection = conexion;
-        
-         */
         public void ConsultaDatos(string consulta)
         {
             comando.CommandType = System.Data.CommandType.Text;
@@ -59,10 +53,33 @@ namespace ConexionDB
             }
             catch (Exception)
             {
-
                 throw;
             }
 
+        }
+        public void EjecutarAccion()
+        {
+            comando.Connection = conexion;
+            try
+            {
+                conexion.Open();
+                comando.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
+        public void SetParametro(string param, object valor)
+        {
+            comando.Parameters.AddWithValue(param, valor);
         }
 
         public void CerrarConexion()
