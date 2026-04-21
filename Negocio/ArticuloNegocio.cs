@@ -61,10 +61,59 @@ namespace Negocio
         {
             AccesoDatos datos = new AccesoDatos();
 
+            // 1° Agrego el articulo a la base de datos.
+
             try
             {
-                datos.ConsultaDatos($"INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio) VALUES ('{nuevo.CodArticulo}', '{nuevo.Nombre}', '{nuevo.Descripcion}', {nuevo.Marca.Id}, {nuevo.Categoria.Id}, {nuevo.Precio})");
+                string consulta = $"INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio) VALUES ('{nuevo.CodArticulo}', '{nuevo.Nombre}', '{nuevo.Descripcion}', {nuevo.Marca.Id}, {nuevo.Categoria.Id}, {nuevo.Precio})";
 
+                datos.ConsultaDatos(consulta);
+                datos.EjecutarAccion();
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+
+            // 2° Consulto por el el ID del articulo agregago anteriormente.
+
+            try
+            {
+                string consulta = "";
+                datos.ConsultaDatos(consulta);
+                datos.EjecutarAccion();
+
+                int id = 0;
+                id = (int)datos.Lector["Id"];
+
+                //A completar
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+
+            // 3° Agrego las imagenes usando el Id del articulo.
+
+            try
+            {
+
+                // A completar
+                string consulta = "";
+
+                datos.ConsultaDatos(consulta);
                 datos.EjecutarAccion();
 
             }
