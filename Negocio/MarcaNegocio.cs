@@ -1,48 +1,36 @@
-﻿using System;
+﻿using ConexionDB;
+using Dominio;
+using System;
 using System.Collections.Generic;
-using System.Data.SqlClient; //Libreria para leer la base de datos
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using ConexionDB;
-using Dominio;
-
 namespace Negocio
 {
-    public class ArticuloNegocio
+    public class MarcaNegocio
     {
-        public List<Articulo> listar()
+        public List<Marca> listar()
         {
-            List<Articulo> lista = new List<Articulo>();
+            List<Marca> lista = new List<Marca>();
 
             //Coneccion a la base de datos
             AccesoDatos Datos = new AccesoDatos(); //Creo la instancia con la cadena de conexion configurada.
 
             try
             {
+                //CORREGIR CONSULTA: Traer solo marcas.
                 //Establezco la consulta a la base de datos
                 Datos.ConsultaDatos("select A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Id AS MarcaId, M.Descripcion AS Marca, A.Precio, C.Id AS CategoriaId, C.Descripcion AS Categoria, I.ImagenUrl from ARTICULOS A INNER JOIN MARCAS M ON A.IdMarca = M.Id INNER JOIN CATEGORIAS C ON A.IdCategoria = C.Id INNER JOIN IMAGENES I ON A.Id = I.IdArticulo");
-                
+
                 //Ejecuto la consulta y guardo el resultado en un lector de datos.
                 Datos.LecturaDatos();
 
                 while (Datos.Lector.Read())
                 {
-                    Articulo aux = new Articulo();
-                    aux.ID = (int)Datos.Lector["Id"];
-                    aux.CodArticulo = (string)Datos.Lector["Codigo"];
-                    aux.Nombre = (string)Datos.Lector["Nombre"];
-                    aux.Descripcion = (string)Datos.Lector["Descripcion"];
-                    aux.Precio = (decimal)Datos.Lector["Precio"];
+                    Marca auxMarca = new Marca((int)Datos.Lector["MarcaId"], (string)Datos.Lector["Marca"]);
 
-                    aux.Marca = new Marca((int)Datos.Lector["MarcaId"], (string)Datos.Lector["Marca"]);
-
-                    aux.Categoria = new Categoria((int)Datos.Lector["CategoriaId"], (string)Datos.Lector["Categoria"]);
-
-                    aux.Imagen.Add((string)Datos.Lector["ImagenUrl"]);
-
-                    lista.Add(aux);
+                    lista.Add(auxMarca);
                 }
 
                 return lista; //Devuelve lista de objetos.
@@ -51,7 +39,7 @@ namespace Negocio
             {
                 throw ex;
             }
-            finally 
+            finally
             {
                 Datos.CerrarConexion();
             }
@@ -63,10 +51,8 @@ namespace Negocio
 
             try
             {
-                datos.ConsultaDatos($"INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio) VALUES ('{nuevo.CodArticulo}', '{nuevo.Nombre}', '{nuevo.Descripcion}', {nuevo.Marca.Id}, {nuevo.Categoria.Id}, {nuevo.Precio})");
-
+                datos.ConsultaDatos(""); //Falta la consulta para agregar un nuevo articulo a la base de datos.
                 datos.EjecutarAccion();
-
             }
             catch (Exception)
             {

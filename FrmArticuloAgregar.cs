@@ -23,18 +23,21 @@ namespace TPWinForm_equipo_1A
 
         private void ArticuloAgregar_Load(object sender, EventArgs e)
         {
-            ///ComboBox de Marca: Codigo (Por ahora solo Prueba)
+            //Cargo la lista de categorias y marcas en los despegables al cargar el formulario.
 
-            cBoxMarca.Items.Add("Prueba Marca 1");
-            cBoxMarca.Items.Add("Prueba Marca 2"); 
-            cBoxMarca.Items.Add("Prueba Marca 3");
+            CategoriaNegocio CategoriaNegocio = new CategoriaNegocio();
+            MarcaNegocio MarcaNegocio = new MarcaNegocio();
 
-            ///ComboBox de Categoria: Codigo (Por ahora solo Prueba)
-            
-            cBoxCategoria.Items.Add("Prueba Categoria 1");
-            cBoxCategoria.Items.Add("Prueba Categoria 2");
-            cBoxCategoria.Items.Add("Prueba Categoria 3");
+            try
+            {
+                cBoxCategoria.DataSource = CategoriaNegocio.listar();
+                cBoxMarca.DataSource = MarcaNegocio.listar();
+            }
+            catch (Exception)
+            {
 
+                throw;
+            }
         }
 
         private void btnPrueba_Click(object sender, EventArgs e)
@@ -66,23 +69,38 @@ namespace TPWinForm_equipo_1A
 
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            Close();
-
-        }
-
         private void btnAgregarArticulo_Click(object sender, EventArgs e)
         {
+            Articulo articulo = new Articulo();
+            ArticuloNegocio articuloNegocio = new ArticuloNegocio();
+
             try
             {
+                articulo.CodArticulo = txtBoxCodArticulo.Text;
+                articulo.Nombre = txtBoxNombre.Text;
+                articulo.Descripcion = txtBoxDescripcion.Text;
+                articulo.Precio = numPrecio.Value;
 
+                //En los despegables hago el casteo explicito indicandole qué tipo de objeto estoy agarrando (6.32´ del video).
+                articulo.Marca = (Marca)cBoxMarca.SelectedItem;
+                articulo.Categoria = (Categoria)cBoxCategoria.SelectedItem;
+
+                articuloNegocio.agregar(articulo);
+                MessageBox.Show("Articulo agregado exitosamente");
+
+                Close();
             }
             catch (Exception)
             {
 
                 throw;
             }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Close();
+
         }
     }
 }

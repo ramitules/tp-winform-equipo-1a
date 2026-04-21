@@ -153,6 +153,7 @@
             // 
             // cBoxMarca
             // 
+            this.cBoxMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cBoxMarca.FormattingEnabled = true;
             this.cBoxMarca.Location = new System.Drawing.Point(119, 188);
             this.cBoxMarca.Name = "cBoxMarca";
@@ -161,6 +162,7 @@
             // 
             // cBoxCategoria
             // 
+            this.cBoxCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cBoxCategoria.FormattingEnabled = true;
             this.cBoxCategoria.Location = new System.Drawing.Point(119, 212);
             this.cBoxCategoria.Name = "cBoxCategoria";
