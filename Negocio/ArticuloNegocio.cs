@@ -131,10 +131,48 @@ namespace Negocio
 
         public void modificar(Articulo articulo)
         {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                string consulta = "UPDATE ARTICULOS SET Codigo = '@Codigo', Nombre = '@Nombre', Descripcion = '@Descripcion', IdMarca = '@IdMarca', IdCategoria = '@IdCategoria', Precio = '@Precio' WHERE Id = '@Id'";
+                datos.ConsultaDatos(consulta);
+                datos.SetParametro("@Codigo", articulo.CodArticulo);
+                datos.SetParametro("@Nombre", articulo.Nombre);
+                datos.SetParametro("@Descripcion", articulo.Descripcion);
+                datos.SetParametro("@IdMarca", articulo.Marca.Id);
+                datos.SetParametro("@IdCategoria", articulo.Categoria.Id);
+                datos.SetParametro("@Precio", articulo.Precio);
+                datos.SetParametro("@Id", articulo.ID);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en funcion modificar en ArticuloNegocio: " + ex.Message);
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
         }
 
         public void eliminar(int id)
         {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                string consulta = "DELETE FROM ARTICULOS WHERE Id = '@Id'";
+                datos.ConsultaDatos(consulta);
+                datos.SetParametro("@Id", id);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en funcion eliminar en ArticuloNegocio: " + ex.Message);
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
         }
     }
 }
