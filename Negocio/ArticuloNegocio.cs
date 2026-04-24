@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data.SqlClient; //Libreria para leer la base de datos
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,6 +13,10 @@ namespace Negocio
 {
     public class ArticuloNegocio
     {
+        private string querySelectTodo = "SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Id AS MarcaId, M.Descripcion AS Marca, A.Precio, C.Id AS CategoriaId, C.Descripcion AS Categoria, ISNULL(I.ImagenUrl, 'NADA') AS ImagenUrl FROM ARTICULOS A INNER JOIN MARCAS M ON A.IdMarca = M.Id INNER JOIN CATEGORIAS C ON A.IdCategoria = C.Id LEFT JOIN IMAGENES I ON A.Id = I.IdArticulo";
+        private string queryInsertArticulo = "INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio) VALUES (@cod, @name, @desc, @idMarca, @idCateg, @precio)";
+        private string querySelectId = "SELECT TOP 1 Id FROM ARTICULOS ORDER BY Id DESC";
+        private string queryInsertImg = "INSERT INTO IMAGENES (IdArticulo, ImagenUrl) VALUES (@idArticulo, @imgUrl)";
         public List<Articulo> listar()
         {
             List<Articulo> lista = new List<Articulo>();
@@ -25,7 +28,7 @@ namespace Negocio
             {
                 //Establezco la consulta a la base de datos
                 //Datos.ConsultaDatos("select A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Id AS MarcaId, M.Descripcion AS Marca, A.Precio, C.Id AS CategoriaId, C.Descripcion AS Categoria, I.ImagenUrl from ARTICULOS A INNER JOIN MARCAS M ON A.IdMarca = M.Id INNER JOIN CATEGORIAS C ON A.IdCategoria = C.Id INNER JOIN IMAGENES I ON A.Id = I.IdArticulo");
-                Datos.ConsultaDatos("SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Id AS MarcaId, M.Descripcion AS Marca, A.Precio, C.Id AS CategoriaId, C.Descripcion AS Categoria, ISNULL(I.ImagenUrl, 'NADA') AS ImagenUrl FROM ARTICULOS A INNER JOIN MARCAS M ON A.IdMarca = M.Id INNER JOIN CATEGORIAS C ON A.IdCategoria = C.Id LEFT JOIN IMAGENES I ON A.Id = I.IdArticulo");
+                Datos.ConsultaDatos(querySelectTodo);
                 
                 //Ejecuto la consulta y guardo el resultado en un lector de datos.
                 Datos.LecturaDatos();
@@ -73,73 +76,28 @@ namespace Negocio
         public void agregar(Articulo nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
-
-            // 1° Agrego el articulo a la base de datos.
-
             try
             {
-                string consulta = $"INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio) VALUES ('{nuevo.CodArticulo}', '{nuevo.Nombre}', '{nuevo.Descripcion}', {nuevo.Marca.Id}, {nuevo.Categoria.Id}, {nuevo.Precio})";
+                // 1° Agrego el articulo a la base de datos.
+                agregarNuevoArticulo(datos, nuevo);
 
-                datos.ConsultaDatos(consulta);
-                datos.EjecutarAccion();
+                // 2° Consulto por el el ID del articulo agregago anteriormente.
+                int idArticulo = getUltimoId(datos);
 
+                // 3° Agrego las imagenes usando el Id del articulo.
+                foreach (string imgUrl in nuevo.Imagen)
+                {
+                    agregarImagen(datos, idArticulo, imgUrl);
+                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw ex;
             }
             finally
             {
                 datos.CerrarConexion();
             }
-
-            // 2° Consulto por el el ID del articulo agregago anteriormente.
-
-            try
-            {
-                string consulta = "";
-                datos.ConsultaDatos(consulta);
-                datos.EjecutarAccion();
-
-                int id = 0;
-                id = (int)datos.Lector["Id"];
-
-                //A completar
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            finally
-            {
-                datos.CerrarConexion();
-            }
-
-            // 3° Agrego las imagenes usando el Id del articulo.
-
-            try
-            {
-
-                // A completar
-                string consulta = "";
-
-                datos.ConsultaDatos(consulta);
-                datos.EjecutarAccion();
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            finally
-            {
-                datos.CerrarConexion();
-            }
-
         }
 
         public void modificar(Articulo articulo)
@@ -147,7 +105,7 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                string consulta = "UPDATE ARTICULOS SET Codigo = '@Codigo', Nombre = '@Nombre', Descripcion = '@Descripcion', IdMarca = '@IdMarca', IdCategoria = '@IdCategoria', Precio = '@Precio' WHERE Id = '@Id'";
+                string consulta = "UPDATE ARTICULOS SET Codigo = @Codigo, Nombre = @Nombre, Descripcion = @Descripcion, IdMarca = @IdMarca, IdCategoria = @IdCategoria, Precio = @Precio WHERE Id = @Id";
                 datos.ConsultaDatos(consulta);
                 datos.SetParametro("@Codigo", articulo.CodArticulo);
                 datos.SetParametro("@Nombre", articulo.Nombre);
@@ -160,7 +118,7 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-                throw new Exception("Error en funcion modificar en ArticuloNegocio: " + ex.Message);
+                throw new Exception("Error al modificar un articulo (ArticuloNegocio.modificar): " + ex.Message);
             }
             finally
             {
@@ -173,41 +131,69 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                string consulta = "DELETE FROM ARTICULOS WHERE Id = '@Id'";
+                string consulta = "DELETE FROM ARTICULOS WHERE Id = @Id";
                 datos.ConsultaDatos(consulta);
                 datos.SetParametro("@Id", id);
                 datos.EjecutarAccion();
             }
             catch (Exception ex)
             {
-                throw new Exception("Error en funcion eliminar en ArticuloNegocio: " + ex.Message);
+                throw new Exception("Error al eliminar un articulo (ArticuloNegocio.eliminar): " + ex.Message);
             }
             finally
             {
                 datos.CerrarConexion();
             }
         }
-        public void agregarImagen(int id, string url)
+        private void agregarImagen(AccesoDatos datos, int id, string url)
         {
-            AccesoDatos datos = new AccesoDatos();
             try
             {
-                string consulta = "INSERT INTO IMAGENES (IdArticulo,ImagenUrl) VALUES (@Id,@Imagen)";
-                datos.ConsultaDatos(consulta);
+                datos.ConsultaDatos(queryInsertImg);
                 datos.SetParametro("@Id", id);
                 datos.SetParametro("@Imagen", url);
                 datos.EjecutarAccion();
             }
             catch (Exception ex)
             {
-                throw new Exception("Error en funcion agregarImagen en ArticuloNegocio: " + ex.Message);
+                throw new Exception("Error al insertar nueva imagen (ArticuloNegocio.agregarImagen): " + ex.Message);
             }
-            finally
-            {
-                datos.CerrarConexion();
-            }
-            
         }
-        
+
+        private void agregarNuevoArticulo(AccesoDatos datos, Articulo nuevo)
+        {
+            try
+            {
+                datos.ConsultaDatos(queryInsertArticulo);
+                datos.SetParametro("@cod", nuevo.CodArticulo);
+                datos.SetParametro("@name", nuevo.Nombre);
+                datos.SetParametro("@desc", nuevo.Descripcion);
+                datos.SetParametro("@idMarca", nuevo.Marca.Id);
+                datos.SetParametro("@idCateg", nuevo.Categoria.Id);
+                datos.SetParametro("@precio", nuevo.Precio);
+
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al agregar un nuevo articulo (ArticuloNegocio.agregarNuevoArticulo): " + ex.Message);
+            }
+        }
+
+        private int getUltimoId(AccesoDatos datos)
+        {
+            try
+            {
+                datos.ConsultaDatos(querySelectId);
+                datos.LecturaDatos();
+                datos.Lector.Read();
+                return datos.Lector.GetInt32(0);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el ID del ultimo articulo agregado (ArticuloNegocio.getUltimoId): " + ex.Message);
+            }
+
+        }
     }
 }
