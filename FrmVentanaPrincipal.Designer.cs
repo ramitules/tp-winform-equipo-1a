@@ -30,7 +30,7 @@
     {
             this.btnArticuloAgregar = new System.Windows.Forms.Button();
             this.btnArticuloModificar = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnArticuloEliminar = new System.Windows.Forms.Button();
             this.dgvArticulos = new System.Windows.Forms.DataGridView();
             this.pbxUrl = new System.Windows.Forms.PictureBox();
             this.btnAnterior = new System.Windows.Forms.Button();
@@ -56,17 +56,19 @@
             this.btnArticuloModificar.Name = "btnArticuloModificar";
             this.btnArticuloModificar.Size = new System.Drawing.Size(103, 35);
             this.btnArticuloModificar.TabIndex = 2;
-            this.btnArticuloModificar.Text = "button2";
+            this.btnArticuloModificar.Text = "Modificar";
             this.btnArticuloModificar.UseVisualStyleBackColor = true;
+            this.btnArticuloModificar.Click += new System.EventHandler(this.btnArticuloModificar_Click);
             // 
-            // button3
+            // btnArticuloEliminar
             // 
-            this.button3.Location = new System.Drawing.Point(31, 191);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(103, 35);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnArticuloEliminar.Location = new System.Drawing.Point(31, 191);
+            this.btnArticuloEliminar.Name = "btnArticuloEliminar";
+            this.btnArticuloEliminar.Size = new System.Drawing.Size(103, 35);
+            this.btnArticuloEliminar.TabIndex = 3;
+            this.btnArticuloEliminar.Text = "Eliminar";
+            this.btnArticuloEliminar.UseVisualStyleBackColor = true;
+            this.btnArticuloEliminar.Click += new System.EventHandler(this.btnArticuloEliminar_Click);
             // 
             // dgvArticulos
             // 
@@ -117,7 +119,7 @@
             this.Controls.Add(this.btnAnterior);
             this.Controls.Add(this.pbxUrl);
             this.Controls.Add(this.dgvArticulos);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.btnArticuloEliminar);
             this.Controls.Add(this.btnArticuloModificar);
             this.Controls.Add(this.btnArticuloAgregar);
             this.Name = "FrmVentanaPrincipal";
@@ -133,7 +135,7 @@
         #endregion
         private System.Windows.Forms.Button btnArticuloAgregar;
         private System.Windows.Forms.Button btnArticuloModificar;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnArticuloEliminar;
         private System.Windows.Forms.DataGridView dgvArticulos;
         private System.Windows.Forms.PictureBox pbxUrl;
         private System.Windows.Forms.Button btnAnterior;
