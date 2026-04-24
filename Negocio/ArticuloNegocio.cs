@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Data.SqlClient; //Libreria para leer la base de datos
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+
 
 using ConexionDB;
 using Dominio;
@@ -22,27 +24,38 @@ namespace Negocio
             try
             {
                 //Establezco la consulta a la base de datos
-                Datos.ConsultaDatos("select A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Id AS MarcaId, M.Descripcion AS Marca, A.Precio, C.Id AS CategoriaId, C.Descripcion AS Categoria, I.ImagenUrl from ARTICULOS A INNER JOIN MARCAS M ON A.IdMarca = M.Id INNER JOIN CATEGORIAS C ON A.IdCategoria = C.Id INNER JOIN IMAGENES I ON A.Id = I.IdArticulo");
+                //Datos.ConsultaDatos("select A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Id AS MarcaId, M.Descripcion AS Marca, A.Precio, C.Id AS CategoriaId, C.Descripcion AS Categoria, I.ImagenUrl from ARTICULOS A INNER JOIN MARCAS M ON A.IdMarca = M.Id INNER JOIN CATEGORIAS C ON A.IdCategoria = C.Id INNER JOIN IMAGENES I ON A.Id = I.IdArticulo");
+                Datos.ConsultaDatos("SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Id AS MarcaId, M.Descripcion AS Marca, A.Precio, C.Id AS CategoriaId, C.Descripcion AS Categoria, ISNULL(I.ImagenUrl, 'NADA') AS ImagenUrl FROM ARTICULOS A INNER JOIN MARCAS M ON A.IdMarca = M.Id INNER JOIN CATEGORIAS C ON A.IdCategoria = C.Id LEFT JOIN IMAGENES I ON A.Id = I.IdArticulo");
                 
                 //Ejecuto la consulta y guardo el resultado en un lector de datos.
                 Datos.LecturaDatos();
-
+                int idAnterior = 0;
                 while (Datos.Lector.Read())
                 {
-                    Articulo aux = new Articulo();
-                    aux.ID = (int)Datos.Lector["Id"];
-                    aux.CodArticulo = (string)Datos.Lector["Codigo"];
-                    aux.Nombre = (string)Datos.Lector["Nombre"];
-                    aux.Descripcion = (string)Datos.Lector["Descripcion"];
-                    aux.Precio = (decimal)Datos.Lector["Precio"];
+                    int idActual = (int)Datos.Lector["id"];
+                    if (idAnterior != idActual)
+                    {
+                        Articulo aux = new Articulo();
+                        aux.ID = (int)Datos.Lector["Id"];
+                        aux.CodArticulo = (string)Datos.Lector["Codigo"];
+                        aux.Nombre = (string)Datos.Lector["Nombre"];
+                        aux.Descripcion = (string)Datos.Lector["Descripcion"];
+                        aux.Precio = (decimal)Datos.Lector["Precio"];
 
-                    aux.Marca = new Marca((int)Datos.Lector["MarcaId"], (string)Datos.Lector["Marca"]);
+                        aux.Marca = new Marca((int)Datos.Lector["MarcaId"], (string)Datos.Lector["Marca"]);
 
-                    aux.Categoria = new Categoria((int)Datos.Lector["CategoriaId"], (string)Datos.Lector["Categoria"]);
+                        aux.Categoria = new Categoria((int)Datos.Lector["CategoriaId"], (string)Datos.Lector["Categoria"]);
 
-                    aux.Imagen.Add((string)Datos.Lector["ImagenUrl"]);
+                        aux.Imagen.Add((string)Datos.Lector["ImagenUrl"]);
 
-                    lista.Add(aux);
+                        lista.Add(aux);
+                        
+                        idAnterior = idActual;
+                    }
+                    else
+                    {
+                        lista[lista.Count() - 1].Imagen.Add((string)Datos.Lector["ImagenUrl"]);
+                    }
                 }
 
                 return lista; //Devuelve lista de objetos.
@@ -174,5 +187,27 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
+        public void agregarImagen(int id, string url)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                string consulta = "INSERT INTO IMAGENES (IdArticulo,ImagenUrl) VALUES (@Id,@Imagen)";
+                datos.ConsultaDatos(consulta);
+                datos.SetParametro("@Id", id);
+                datos.SetParametro("@Imagen", url);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en funcion agregarImagen en ArticuloNegocio: " + ex.Message);
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+            
+        }
+        
     }
 }
