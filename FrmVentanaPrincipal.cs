@@ -73,6 +73,8 @@ namespace TPWinForm_equipo_1A
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
         {
+            if (dgvArticulos.CurrentRow == null)
+                return;
             articuloActual = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
             indiceActual = 0;
             mostrarImagen(articuloActual.Imagen[indiceActual]);

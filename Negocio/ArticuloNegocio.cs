@@ -27,11 +27,11 @@ namespace Negocio
             try
             {
                 //Establezco la consulta a la base de datos
-                //Datos.ConsultaDatos("select A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Id AS MarcaId, M.Descripcion AS Marca, A.Precio, C.Id AS CategoriaId, C.Descripcion AS Categoria, I.ImagenUrl from ARTICULOS A INNER JOIN MARCAS M ON A.IdMarca = M.Id INNER JOIN CATEGORIAS C ON A.IdCategoria = C.Id INNER JOIN IMAGENES I ON A.Id = I.IdArticulo");
                 Datos.ConsultaDatos(querySelectTodo);
                 
                 //Ejecuto la consulta y guardo el resultado en un lector de datos.
                 Datos.LecturaDatos();
+
                 int idAnterior = 0;
                 while (Datos.Lector.Read())
                 {
