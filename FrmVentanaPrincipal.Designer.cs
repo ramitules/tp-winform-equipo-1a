@@ -35,6 +35,9 @@
             this.pbxUrl = new System.Windows.Forms.PictureBox();
             this.btnAnterior = new System.Windows.Forms.Button();
             this.btnPosterior = new System.Windows.Forms.Button();
+            this.lblBusqueda = new System.Windows.Forms.Label();
+            this.txtBoxBuscar = new System.Windows.Forms.TextBox();
+            this.btnBuscar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxUrl)).BeginInit();
             this.SuspendLayout();
@@ -121,11 +124,40 @@
             this.btnPosterior.UseVisualStyleBackColor = true;
             this.btnPosterior.Click += new System.EventHandler(this.btnPosterior_Click);
             // 
+            // lblBusqueda
+            // 
+            this.lblBusqueda.AutoSize = true;
+            this.lblBusqueda.Location = new System.Drawing.Point(171, 37);
+            this.lblBusqueda.Name = "lblBusqueda";
+            this.lblBusqueda.Size = new System.Drawing.Size(55, 13);
+            this.lblBusqueda.TabIndex = 8;
+            this.lblBusqueda.Text = "Busqueda";
+            // 
+            // txtBoxBuscar
+            // 
+            this.txtBoxBuscar.Location = new System.Drawing.Point(232, 34);
+            this.txtBoxBuscar.Name = "txtBoxBuscar";
+            this.txtBoxBuscar.Size = new System.Drawing.Size(100, 20);
+            this.txtBoxBuscar.TabIndex = 9;
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.Location = new System.Drawing.Point(350, 32);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscar.TabIndex = 10;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            // 
             // FrmVentanaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1211, 455);
+            this.Controls.Add(this.btnBuscar);
+            this.Controls.Add(this.txtBoxBuscar);
+            this.Controls.Add(this.lblBusqueda);
             this.Controls.Add(this.btnPosterior);
             this.Controls.Add(this.btnAnterior);
             this.Controls.Add(this.pbxUrl);
@@ -141,6 +173,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxUrl)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
     }
 
@@ -152,5 +185,8 @@
         private System.Windows.Forms.PictureBox pbxUrl;
         private System.Windows.Forms.Button btnAnterior;
         private System.Windows.Forms.Button btnPosterior;
+        private System.Windows.Forms.Label lblBusqueda;
+        private System.Windows.Forms.TextBox txtBoxBuscar;
+        private System.Windows.Forms.Button btnBuscar;
     }
 }

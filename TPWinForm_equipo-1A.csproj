@@ -67,7 +67,6 @@
     <None Include=".env">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include=".env.ejemplo" />
     <None Include="App.config" />
     <None Include="README.md" />
   </ItemGroup>

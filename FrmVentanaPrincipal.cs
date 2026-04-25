@@ -42,7 +42,10 @@ namespace TPWinForm_equipo_1A
                 ListaArticulos = negocio.listar();
 
                 dgvArticulos.DataSource = ListaArticulos;
-                dgvArticulos.Columns["ID"].Visible = false;
+                //dgvArticulos.Columns["ID"].Visible = false;
+                ocultarColumnas();
+
+                dgvArticulos.DataSource = ListaArticulos;
 
                 mostrarImagen(ListaArticulos[0].Imagen[0]);
             }
@@ -50,6 +53,11 @@ namespace TPWinForm_equipo_1A
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void ocultarColumnas()
+        {
+            dgvArticulos.Columns["ID"].Visible = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -157,6 +165,17 @@ namespace TPWinForm_equipo_1A
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            List<Articulo> listaFiltrada;
+
+            listaFiltrada = ListaArticulos.FindAll(x => x.Nombre.ToUpper().Contains(txtBoxBuscar.Text.ToUpper()));
+
+            dgvArticulos.DataSource = null; //Siempre hay que hacer una limpieza antes de pisar el DataSource, sino no se actualiza el DataGridView
+            dgvArticulos.DataSource = listaFiltrada;
+            ocultarColumnas();
         }
     }
 }
