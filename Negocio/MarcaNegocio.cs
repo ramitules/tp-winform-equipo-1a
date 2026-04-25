@@ -8,32 +8,30 @@ using System.Threading.Tasks;
 
 namespace Negocio
 {
-    public class MarcaNegocio
+    public class MarcaNegocio: ClaveValorNegocio
     {
+        public MarcaNegocio()
+        {
+            setTabla("MARCAS");
+        }
         public List<Marca> listar()
         {
             List<Marca> lista = new List<Marca>();
 
-            //Coneccion a la base de datos
-            AccesoDatos Datos = new AccesoDatos(); //Creo la instancia con la cadena de conexion configurada.
+            AccesoDatos Datos = new AccesoDatos();
 
             try
             {
-                //CORREGIR CONSULTA: Traer solo marcas.
-                //Establezco la consulta a la base de datos
-                Datos.ConsultaDatos("select A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Id AS MarcaId, M.Descripcion AS Marca, A.Precio, C.Id AS CategoriaId, C.Descripcion AS Categoria, I.ImagenUrl from ARTICULOS A INNER JOIN MARCAS M ON A.IdMarca = M.Id INNER JOIN CATEGORIAS C ON A.IdCategoria = C.Id INNER JOIN IMAGENES I ON A.Id = I.IdArticulo");
-
-                //Ejecuto la consulta y guardo el resultado en un lector de datos.
+                Datos.ConsultaDatos(querySelectTodo);
                 Datos.LecturaDatos();
 
                 while (Datos.Lector.Read())
                 {
-                    Marca auxMarca = new Marca((int)Datos.Lector["MarcaId"], (string)Datos.Lector["Marca"]);
-
+                    Marca auxMarca = new Marca((int)Datos.Lector["Id"], (string)Datos.Lector["Descripcion"]);
                     lista.Add(auxMarca);
                 }
 
-                return lista; //Devuelve lista de objetos.
+                return lista;
             }
             catch (Exception ex)
             {
@@ -43,35 +41,6 @@ namespace Negocio
             {
                 Datos.CerrarConexion();
             }
-        }
-
-        public void agregar(Articulo nuevo)
-        {
-            AccesoDatos datos = new AccesoDatos();
-
-            try
-            {
-                datos.ConsultaDatos(""); //Falta la consulta para agregar un nuevo articulo a la base de datos.
-                datos.EjecutarAccion();
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            finally
-            {
-                datos.CerrarConexion();
-            }
-
-        }
-
-        public void modificar(Articulo articulo)
-        {
-        }
-
-        public void eliminar(int id)
-        {
         }
     }
 }
