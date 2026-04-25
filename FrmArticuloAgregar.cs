@@ -24,28 +24,34 @@ namespace TPWinForm_equipo_1A
         private void ArticuloAgregar_Load(object sender, EventArgs e)
         {
             //Cargo la lista de categorias y marcas en los despegables al cargar el formulario.
-
-            CategoriaNegocio CategoriaNegocio = new CategoriaNegocio();
-            MarcaNegocio MarcaNegocio = new MarcaNegocio();
-
             try
             {
-                cBoxCategoria.DisplayMember = "Descripcion"; //Le indico que muestre la descripcion de la categoria.
-                cBoxCategoria.ValueMember = "Id"; //Le indico lo que debe capturar como valor.
-                cBoxCategoria.DataSource = CategoriaNegocio.listar();
-                
-                cBoxMarca.DisplayMember = "Descripcion"; 
-                cBoxMarca.ValueMember = "Id"; 
-                cBoxMarca.DataSource = MarcaNegocio.listar();
-                
-                //agregado
+                CargarComboCategoria();
+                CargarComboMarca();
+
                 pbxImagenNueva.Load("https://media.istockphoto.com/id/1980276924/es/vector/sin-elemento-gr%C3%A1fico-en-miniatura-de-la-foto-no-se-ha-encontrado-ninguna-imagen-o-est%C3%A1.jpg?s=612x612&w=0&k=20&c=artWlQoi5R1edWQBv9LfzeLXupOcH_alZnMgvXdYkF4=");
             }
             catch (Exception)
             {
-
                 throw;
             }
+        }
+
+        private void CargarComboCategoria()
+        {
+            CategoriaNegocio CategoriaNegocio = new CategoriaNegocio();
+
+            cBoxCategoria.DisplayMember = "Descripcion";
+            cBoxCategoria.ValueMember = "Id";
+            cBoxCategoria.DataSource = CategoriaNegocio.listar();
+        }
+        private void CargarComboMarca()
+        {
+            MarcaNegocio MarcaNegocio = new MarcaNegocio();
+
+            cBoxMarca.DisplayMember = "Descripcion";
+            cBoxMarca.ValueMember = "Id";
+            cBoxMarca.DataSource = MarcaNegocio.listar();
         }
 
         private void btnPrueba_Click(object sender, EventArgs e)
@@ -155,6 +161,50 @@ namespace TPWinForm_equipo_1A
             catch (Exception ex)
             {
                 pbxImagenNueva.Load("https://media.istockphoto.com/id/1980276924/es/vector/sin-elemento-gr%C3%A1fico-en-miniatura-de-la-foto-no-se-ha-encontrado-ninguna-imagen-o-est%C3%A1.jpg?s=612x612&w=0&k=20&c=artWlQoi5R1edWQBv9LfzeLXupOcH_alZnMgvXdYkF4=");
+            }
+        }
+
+        private void btnAgregarMarca_Click(object sender, EventArgs e)
+        {
+            FrmAgregarMarca frmMarca = new FrmAgregarMarca();
+            frmMarca.Show();
+            CargarComboMarca();
+        }
+
+        private void btnAgregarCategoria_Click(object sender, EventArgs e)
+        {
+            FrmAgregarCategoria frmCategoria = new FrmAgregarCategoria();
+            frmCategoria.Show();
+            CargarComboCategoria();
+        }
+
+        private void btnEliminarMarca_Click(object sender, EventArgs e)
+        {
+            if (cBoxMarca.Text == "")
+                return;
+
+            DialogResult res = MessageBox.Show($"Seguro que desea eliminar la marca {cBoxMarca.Text}?", "Eliminacion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+
+            if (res == DialogResult.Yes)
+            {
+                MarcaNegocio marcaNegocio = new MarcaNegocio();
+                marcaNegocio.eliminar(cBoxMarca.Text);
+                CargarComboMarca();
+            }
+        }
+
+        private void btnEliminarCategoria_Click(object sender, EventArgs e)
+        {
+            if (cBoxCategoria.Text == "")
+                return;
+
+            DialogResult res = MessageBox.Show($"Seguro que desea eliminar la categoria {cBoxCategoria.Text}?", "Eliminacion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+
+            if (res == DialogResult.Yes)
+            {
+                CategoriaNegocio catNegocio = new CategoriaNegocio();
+                catNegocio.eliminar(cBoxCategoria.Text);
+                CargarComboCategoria();
             }
         }
     }
