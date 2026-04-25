@@ -10,7 +10,7 @@ namespace Dominio
     {
         public int Id { get; }
         
-        private string Descripcion;
+        public string Descripcion { get; }
 
         public Categoria(int id, string descripcion)
         {
