@@ -16,24 +16,35 @@ namespace TPWinForm_equipo_1A
 {
     public partial class FrmVentanaPrincipal : Form
     {
+        private List<Articulo> ListaArticulos;
         private int indiceActual;
         private Articulo articuloActual = null;
         public FrmVentanaPrincipal()
         {
             InitializeComponent();
         }
-
+        //
         private void VentanaPrincipal_Load(object sender, EventArgs e)
         {
-            List<Articulo> lista = new List<Articulo>();
+
+            Cargar();
+        }
+
+        /// <summary>
+        /// Con este metodo se recarga el DataGridView cuando sea necesario, no solo en la carga inicial del formulario
+        /// </summary>
+        private void Cargar()
+        {
+            ArticuloNegocio negocio = new ArticuloNegocio();
+
             try
             {
-                ArticuloNegocio negocio = new ArticuloNegocio();
-                lista = negocio.listar();
-                dgvArticulos.DataSource = lista;
+                ListaArticulos = negocio.listar();
+
+                dgvArticulos.DataSource = ListaArticulos;
                 dgvArticulos.Columns["ID"].Visible = false;
-                pbxUrl.Load(lista[0].Imagen[0]);
-                //throw new Exception("Mensaje de prueba - Error al cargar los datos"); - Esta linea es para ver que captura el error y lo muestra son trabar el progrma.
+
+                mostrarImagen(ListaArticulos[0].Imagen[0]);
             }
             catch (Exception ex)
             {
@@ -45,7 +56,9 @@ namespace TPWinForm_equipo_1A
         {
             FrmArticuloAgregar ventana = new FrmArticuloAgregar();
             ventana.ShowDialog();
+            Cargar();
         }
+
         public void mostrarImagen(string url)
         {
             try
@@ -115,7 +128,7 @@ namespace TPWinForm_equipo_1A
             FrmArticuloAgregar modif = new FrmArticuloAgregar();
             modif.ShowDialog();
             
-            // Cargar();
+            Cargar();
         }
 
         private void btnArticuloEliminar_Click(object sender, EventArgs e)
@@ -135,7 +148,7 @@ namespace TPWinForm_equipo_1A
 
                     negocio.eliminar(seleccionado.ID);
 
-                    // Cargar();
+                    Cargar();
                 }
             }
             catch (Exception ex)

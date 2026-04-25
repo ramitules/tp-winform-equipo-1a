@@ -43,7 +43,7 @@
             // 
             this.btnArticuloAgregar.AccessibleName = "";
             this.btnArticuloAgregar.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnArticuloAgregar.Location = new System.Drawing.Point(31, 90);
+            this.btnArticuloAgregar.Location = new System.Drawing.Point(31, 143);
             this.btnArticuloAgregar.Name = "btnArticuloAgregar";
             this.btnArticuloAgregar.Size = new System.Drawing.Size(103, 35);
             this.btnArticuloAgregar.TabIndex = 1;
@@ -54,7 +54,7 @@
             // btnArticuloModificar
             // 
             this.btnArticuloModificar.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnArticuloModificar.Location = new System.Drawing.Point(31, 140);
+            this.btnArticuloModificar.Location = new System.Drawing.Point(31, 193);
             this.btnArticuloModificar.Name = "btnArticuloModificar";
             this.btnArticuloModificar.Size = new System.Drawing.Size(103, 35);
             this.btnArticuloModificar.TabIndex = 2;
@@ -65,7 +65,7 @@
             // btnArticuloEliminar
             // 
             this.btnArticuloEliminar.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnArticuloEliminar.Location = new System.Drawing.Point(31, 191);
+            this.btnArticuloEliminar.Location = new System.Drawing.Point(31, 243);
             this.btnArticuloEliminar.Name = "btnArticuloEliminar";
             this.btnArticuloEliminar.Size = new System.Drawing.Size(103, 35);
             this.btnArticuloEliminar.TabIndex = 3;
@@ -81,16 +81,16 @@
             this.dgvArticulos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvArticulos.BackgroundColor = System.Drawing.SystemColors.Menu;
             this.dgvArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvArticulos.Location = new System.Drawing.Point(170, 28);
+            this.dgvArticulos.Location = new System.Drawing.Point(174, 65);
             this.dgvArticulos.Name = "dgvArticulos";
-            this.dgvArticulos.Size = new System.Drawing.Size(733, 391);
+            this.dgvArticulos.Size = new System.Drawing.Size(733, 354);
             this.dgvArticulos.TabIndex = 4;
             this.dgvArticulos.SelectionChanged += new System.EventHandler(this.dgvArticulos_SelectionChanged);
             // 
             // pbxUrl
             // 
             this.pbxUrl.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.pbxUrl.Location = new System.Drawing.Point(938, 28);
+            this.pbxUrl.Location = new System.Drawing.Point(946, 128);
             this.pbxUrl.Name = "pbxUrl";
             this.pbxUrl.Size = new System.Drawing.Size(238, 238);
             this.pbxUrl.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -101,7 +101,7 @@
             // 
             this.btnAnterior.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnAnterior.Enabled = false;
-            this.btnAnterior.Location = new System.Drawing.Point(938, 286);
+            this.btnAnterior.Location = new System.Drawing.Point(946, 384);
             this.btnAnterior.Name = "btnAnterior";
             this.btnAnterior.Size = new System.Drawing.Size(51, 35);
             this.btnAnterior.TabIndex = 6;
@@ -113,7 +113,7 @@
             // 
             this.btnPosterior.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnPosterior.Enabled = false;
-            this.btnPosterior.Location = new System.Drawing.Point(1125, 286);
+            this.btnPosterior.Location = new System.Drawing.Point(1133, 384);
             this.btnPosterior.Name = "btnPosterior";
             this.btnPosterior.Size = new System.Drawing.Size(51, 35);
             this.btnPosterior.TabIndex = 7;
