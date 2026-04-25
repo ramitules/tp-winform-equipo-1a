@@ -29,7 +29,6 @@
     private void InitializeComponent()
     {
             this.btnArticuloAgregar = new System.Windows.Forms.Button();
-            this.btnArticuloModificar = new System.Windows.Forms.Button();
             this.btnArticuloEliminar = new System.Windows.Forms.Button();
             this.dgvArticulos = new System.Windows.Forms.DataGridView();
             this.pbxUrl = new System.Windows.Forms.PictureBox();
@@ -38,6 +37,7 @@
             this.lblBusqueda = new System.Windows.Forms.Label();
             this.txtBoxBuscar = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
+            this.btnSeleccionar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxUrl)).BeginInit();
             this.SuspendLayout();
@@ -53,17 +53,6 @@
             this.btnArticuloAgregar.Text = "Agregar Artículo";
             this.btnArticuloAgregar.UseVisualStyleBackColor = true;
             this.btnArticuloAgregar.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // btnArticuloModificar
-            // 
-            this.btnArticuloModificar.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnArticuloModificar.Location = new System.Drawing.Point(31, 193);
-            this.btnArticuloModificar.Name = "btnArticuloModificar";
-            this.btnArticuloModificar.Size = new System.Drawing.Size(103, 35);
-            this.btnArticuloModificar.TabIndex = 2;
-            this.btnArticuloModificar.Text = "Modificar";
-            this.btnArticuloModificar.UseVisualStyleBackColor = true;
-            this.btnArticuloModificar.Click += new System.EventHandler(this.btnArticuloModificar_Click);
             // 
             // btnArticuloEliminar
             // 
@@ -150,11 +139,23 @@
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
+            // btnSeleccionar
+            // 
+            this.btnSeleccionar.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnSeleccionar.Location = new System.Drawing.Point(31, 193);
+            this.btnSeleccionar.Name = "btnSeleccionar";
+            this.btnSeleccionar.Size = new System.Drawing.Size(103, 35);
+            this.btnSeleccionar.TabIndex = 11;
+            this.btnSeleccionar.Text = "Seleccionar";
+            this.btnSeleccionar.UseVisualStyleBackColor = true;
+            this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
+            // 
             // FrmVentanaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1211, 455);
+            this.Controls.Add(this.btnSeleccionar);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.txtBoxBuscar);
             this.Controls.Add(this.lblBusqueda);
@@ -163,7 +164,6 @@
             this.Controls.Add(this.pbxUrl);
             this.Controls.Add(this.dgvArticulos);
             this.Controls.Add(this.btnArticuloEliminar);
-            this.Controls.Add(this.btnArticuloModificar);
             this.Controls.Add(this.btnArticuloAgregar);
             this.MaximizeBox = false;
             this.Name = "FrmVentanaPrincipal";
@@ -179,7 +179,6 @@
 
         #endregion
         private System.Windows.Forms.Button btnArticuloAgregar;
-        private System.Windows.Forms.Button btnArticuloModificar;
         private System.Windows.Forms.Button btnArticuloEliminar;
         private System.Windows.Forms.DataGridView dgvArticulos;
         private System.Windows.Forms.PictureBox pbxUrl;
@@ -188,5 +187,6 @@
         private System.Windows.Forms.Label lblBusqueda;
         private System.Windows.Forms.TextBox txtBoxBuscar;
         private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.Button btnSeleccionar;
     }
 }

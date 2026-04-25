@@ -21,6 +21,19 @@ namespace TPWinForm_equipo_1A
             InitializeComponent();
         }
 
+        public FrmArticuloAgregar(Articulo art)
+        {
+            InitializeComponent();
+            this.Text = "Modificar Articulo";
+            txtBoxCodArticulo.Text = art.CodArticulo;
+            txtBoxNombre.Text = art.Nombre;
+            txtBoxDescripcion.Text = art.Descripcion;
+            numPrecio.Value = art.Precio;
+            txtBoxImagen.Text = art.Imagen[0];
+            cBoxMarca.SelectedValue = art.Marca.Id;
+            cBoxCategoria.SelectedValue = art.Categoria.Id; 
+        }
+
         private void ArticuloAgregar_Load(object sender, EventArgs e)
         {
             //Cargo la lista de categorias y marcas en los despegables al cargar el formulario.
@@ -29,7 +42,8 @@ namespace TPWinForm_equipo_1A
                 CargarComboCategoria();
                 CargarComboMarca();
 
-                pbxImagenNueva.Load("https://media.istockphoto.com/id/1980276924/es/vector/sin-elemento-gr%C3%A1fico-en-miniatura-de-la-foto-no-se-ha-encontrado-ninguna-imagen-o-est%C3%A1.jpg?s=612x612&w=0&k=20&c=artWlQoi5R1edWQBv9LfzeLXupOcH_alZnMgvXdYkF4=");
+                //pbxImagenNueva.Load("https://media..) esta linea la saco para poner una funcion que cargue la imagen.
+                mostrarImagen(txtBoxImagen.Text);
             }
             catch (Exception)
             {
@@ -56,31 +70,7 @@ namespace TPWinForm_equipo_1A
 
         private void btnPrueba_Click(object sender, EventArgs e)
         {
-            Articulo articulo = new Articulo();
-
-            try
-            {
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
-
-            String codArticulo = txtBoxCodArticulo.Text;
-            String nombre = txtBoxNombre.Text;
-            String descripcion = txtBoxDescripcion.Text;
-            int marca = (int)cBoxMarca.SelectedValue; //Te cambie esta linea.
-            int categoria = (int)cBoxCategoria.SelectedValue; //Y esta otra.
-            String imagen = txtBoxImagen.Text;
-            decimal precio = numPrecio.Value;
-
-            string texto = $"Id: -- \r\n CodArt: {codArticulo}\r\n Nombre: {nombre}\r\n Descripcion: {descripcion}\r\n Precio: {precio}\r\n MarcaDesc: {marca}\r\nCategoriaId: {categoria}\r\nImagenes: {imagen}";
-
-            txtCargaArticulo.Text = texto;
-
+ 
         }
 
         private void btnAgregarArticulo_Click(object sender, EventArgs e)

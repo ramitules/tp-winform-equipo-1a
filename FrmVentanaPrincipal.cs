@@ -128,17 +128,7 @@ namespace TPWinForm_equipo_1A
 
         private void btnArticuloModificar_Click(object sender, EventArgs e)
         {
-            // Validacion: al menos una fila seleccionada
-            if (dgvArticulos.CurrentRow == null)
-                return;
-
-            Articulo seleccionado;
-            seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
-
-            FrmArticuloAgregar modif = new FrmArticuloAgregar();
-            modif.ShowDialog();
             
-            Cargar();
         }
 
         private void btnArticuloEliminar_Click(object sender, EventArgs e)
@@ -176,6 +166,20 @@ namespace TPWinForm_equipo_1A
             dgvArticulos.DataSource = null; //Siempre hay que hacer una limpieza antes de pisar el DataSource, sino no se actualiza el DataGridView
             dgvArticulos.DataSource = listaFiltrada;
             ocultarColumnas();
+        }
+
+        private void btnSeleccionar_Click(object sender, EventArgs e)
+        {
+            // Validacion: al menos una fila seleccionada
+            if (dgvArticulos.CurrentRow == null)
+                return;
+
+            Articulo seleccionado;
+            string codigo = dgvArticulos.CurrentRow.Cells["CodArticulo"].Value.ToString();
+            seleccionado = ListaArticulos.Find(x => x.CodArticulo == codigo);
+
+            FrmArticuloAgregar modif = new FrmArticuloAgregar(seleccionado);
+            modif.ShowDialog();
         }
     }
 }
