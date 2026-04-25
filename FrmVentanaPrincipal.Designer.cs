@@ -42,6 +42,7 @@
             // btnArticuloAgregar
             // 
             this.btnArticuloAgregar.AccessibleName = "";
+            this.btnArticuloAgregar.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnArticuloAgregar.Location = new System.Drawing.Point(31, 90);
             this.btnArticuloAgregar.Name = "btnArticuloAgregar";
             this.btnArticuloAgregar.Size = new System.Drawing.Size(103, 35);
@@ -52,6 +53,7 @@
             // 
             // btnArticuloModificar
             // 
+            this.btnArticuloModificar.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnArticuloModificar.Location = new System.Drawing.Point(31, 140);
             this.btnArticuloModificar.Name = "btnArticuloModificar";
             this.btnArticuloModificar.Size = new System.Drawing.Size(103, 35);
@@ -62,6 +64,7 @@
             // 
             // btnArticuloEliminar
             // 
+            this.btnArticuloEliminar.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnArticuloEliminar.Location = new System.Drawing.Point(31, 191);
             this.btnArticuloEliminar.Name = "btnArticuloEliminar";
             this.btnArticuloEliminar.Size = new System.Drawing.Size(103, 35);
@@ -72,28 +75,35 @@
             // 
             // dgvArticulos
             // 
+            this.dgvArticulos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvArticulos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvArticulos.BackgroundColor = System.Drawing.SystemColors.Menu;
             this.dgvArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvArticulos.Location = new System.Drawing.Point(170, 28);
             this.dgvArticulos.Name = "dgvArticulos";
-            this.dgvArticulos.Size = new System.Drawing.Size(606, 391);
+            this.dgvArticulos.Size = new System.Drawing.Size(733, 391);
             this.dgvArticulos.TabIndex = 4;
             this.dgvArticulos.SelectionChanged += new System.EventHandler(this.dgvArticulos_SelectionChanged);
             // 
             // pbxUrl
             // 
-            this.pbxUrl.Location = new System.Drawing.Point(840, 28);
+            this.pbxUrl.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.pbxUrl.Location = new System.Drawing.Point(938, 28);
             this.pbxUrl.Name = "pbxUrl";
-            this.pbxUrl.Size = new System.Drawing.Size(238, 166);
+            this.pbxUrl.Size = new System.Drawing.Size(238, 238);
             this.pbxUrl.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbxUrl.TabIndex = 5;
             this.pbxUrl.TabStop = false;
             // 
             // btnAnterior
             // 
+            this.btnAnterior.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnAnterior.Enabled = false;
-            this.btnAnterior.Location = new System.Drawing.Point(840, 237);
+            this.btnAnterior.Location = new System.Drawing.Point(938, 286);
             this.btnAnterior.Name = "btnAnterior";
-            this.btnAnterior.Size = new System.Drawing.Size(103, 35);
+            this.btnAnterior.Size = new System.Drawing.Size(51, 35);
             this.btnAnterior.TabIndex = 6;
             this.btnAnterior.Text = "<<";
             this.btnAnterior.UseVisualStyleBackColor = true;
@@ -101,10 +111,11 @@
             // 
             // btnPosterior
             // 
+            this.btnPosterior.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnPosterior.Enabled = false;
-            this.btnPosterior.Location = new System.Drawing.Point(975, 237);
+            this.btnPosterior.Location = new System.Drawing.Point(1125, 286);
             this.btnPosterior.Name = "btnPosterior";
-            this.btnPosterior.Size = new System.Drawing.Size(103, 35);
+            this.btnPosterior.Size = new System.Drawing.Size(51, 35);
             this.btnPosterior.TabIndex = 7;
             this.btnPosterior.Text = ">>";
             this.btnPosterior.UseVisualStyleBackColor = true;
@@ -122,6 +133,7 @@
             this.Controls.Add(this.btnArticuloEliminar);
             this.Controls.Add(this.btnArticuloModificar);
             this.Controls.Add(this.btnArticuloAgregar);
+            this.MaximizeBox = false;
             this.Name = "FrmVentanaPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestion de articulos";
