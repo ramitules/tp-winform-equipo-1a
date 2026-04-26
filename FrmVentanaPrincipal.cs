@@ -184,6 +184,7 @@ namespace TPWinForm_equipo_1A
         {
             List<Articulo> listaFiltrada;
             string busqueda = txtBoxBuscar.Text;
+            lblResultadoBusqueda.Visible = false;
 
             if (busqueda.Length > 1)
             {
@@ -196,9 +197,18 @@ namespace TPWinForm_equipo_1A
                 listaFiltrada = ListaArticulos;
             }
 
+            // Mostrar resultado de la busqueda
+
+           
+            lblResultadoBusqueda.Visible = false;
             dgvArticulos.DataSource = null; //Siempre hay que hacer una limpieza antes de pisar el DataSource, sino no se actualiza el DataGridView
             dgvArticulos.DataSource = listaFiltrada;
             ocultarColumnas();
+            if (listaFiltrada.Count == 0)
+            {
+                lblResultadoBusqueda.Visible = true;
+            }
+
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -219,7 +229,8 @@ namespace TPWinForm_equipo_1A
 
             List<Articulo> listaFiltrada;
             listaFiltrada = ListaArticulos; // Inicializo la lista filtrada con la lista completa, para luego ir filtrando segun los criterios seleccionados
-            
+            lblResultadoBusqueda.Visible = false;
+
             string busqueda = txtBoxBusquedaAvanzada.Text;
             string campo = cboBoxCampo.SelectedItem.ToString();
             string criterio = cboBoxCriterio.SelectedItem.ToString();

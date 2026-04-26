@@ -45,6 +45,7 @@
             this.gBoxBusquedaAvanzada = new System.Windows.Forms.GroupBox();
             this.txtBoxBusquedaAvanzada = new System.Windows.Forms.TextBox();
             this.lblBusquedaAvanzada = new System.Windows.Forms.Label();
+            this.lblResultadoBusqueda = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxUrl)).BeginInit();
             this.gBoxBusquedaAvanzada.SuspendLayout();
@@ -229,11 +230,22 @@
             this.lblBusquedaAvanzada.TabIndex = 20;
             this.lblBusquedaAvanzada.Text = "Texto a buscar:";
             // 
+            // lblResultadoBusqueda
+            // 
+            this.lblResultadoBusqueda.AutoSize = true;
+            this.lblResultadoBusqueda.Location = new System.Drawing.Point(426, 20);
+            this.lblResultadoBusqueda.Name = "lblResultadoBusqueda";
+            this.lblResultadoBusqueda.Size = new System.Drawing.Size(216, 13);
+            this.lblResultadoBusqueda.TabIndex = 21;
+            this.lblResultadoBusqueda.Text = "Sin resultados en Cod. de Artículo y Nombre";
+            this.lblResultadoBusqueda.Visible = false;
+            // 
             // FrmVentanaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1211, 455);
+            this.Controls.Add(this.lblResultadoBusqueda);
             this.Controls.Add(this.gBoxBusquedaAvanzada);
             this.Controls.Add(this.btnSeleccionar);
             this.Controls.Add(this.txtBoxBuscar);
@@ -276,5 +288,6 @@
         private System.Windows.Forms.GroupBox gBoxBusquedaAvanzada;
         private System.Windows.Forms.Label lblBusquedaAvanzada;
         private System.Windows.Forms.TextBox txtBoxBusquedaAvanzada;
+        private System.Windows.Forms.Label lblResultadoBusqueda;
     }
 }
