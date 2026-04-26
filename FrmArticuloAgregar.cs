@@ -42,13 +42,11 @@ namespace TPWinForm_equipo_1A
             txtBoxNombre.Text = art.Nombre;
             txtBoxDescripcion.Text = art.Descripcion;
             numPrecio.Value = art.Precio;
-            txtBoxImagen.Text = art.Imagen[0];
             cBoxMarca.SelectedValue = art.Marca.Id;
             cBoxCategoria.SelectedValue = art.Categoria.Id;
             txtBoxCodArticulo.ReadOnly = true;
             txtBoxNombre.ReadOnly = true;
             txtBoxDescripcion.ReadOnly = true;
-            txtBoxImagen.ReadOnly = true;
             btnGestionarImagen.Visible = true;
 
             btnAgregarMarca.Enabled = false;
@@ -75,7 +73,17 @@ namespace TPWinForm_equipo_1A
                 CargarComboMarca();
 
                 //pbxImagenNueva.Load("https://media..) esta linea la saco para poner una funcion que cargue la imagen.
-                mostrarImagen(txtBoxImagen.Text); //carga la primer imagen del obeto, si la tiene claro. 
+                //mostrarImagen(txtBoxImagen.Text); //carga la primer imagen del obeto, si la tiene claro.
+
+                if (!articuloNuevo && articuloTraido.Imagen != null && articuloTraido.Imagen.Count > 0)
+                {
+                    mostrarImagen(articuloTraido.Imagen[0]);
+                }
+                else
+                {
+                    mostrarImagen("");  // Esto mostrará la imagen por defecto gracias a tu método mostrarImagen
+                }
+
                 ValidaTodoConFuncionesIndividuales();
             }
             catch (Exception)
@@ -136,15 +144,6 @@ namespace TPWinForm_equipo_1A
             ValidaTodoConFuncionesIndividuales();
         }
 
-
-
-        private void txtBoxImagen_TextChanged(object sender, EventArgs e)
-        {
-            string urlImagenNueva = txtBoxImagen.Text;
-            mostrarImagen(urlImagenNueva);
-            //if (!articuloNuevo)
-                //btnAceptar.Enabled = existenCambios();
-        }  //Este capas ya no sirva
         public void mostrarImagen(string url)
         {
             try
@@ -233,7 +232,7 @@ namespace TPWinForm_equipo_1A
             string nombreNuevo = txtBoxNombre.Text;
             string descripcionNueva = txtBoxDescripcion.Text;
             decimal precioNuevo = numPrecio.Value;
-            string imagenNueva = txtBoxImagen.Text;
+            //string imagenNueva = txtBoxImagen.Text;
 
             //Una aclaracion que me hizo recontra renegar. Cuando se cargan los campos comboBox, se dispara el evento de cambio que dispara la funcion de validarCampos,
             //pero en ese momento no existen valores cargados por defecto, sino que se encuentra el campo vacio y devuelve un null que es imposible de castear a int
@@ -307,7 +306,14 @@ namespace TPWinForm_equipo_1A
             else
             {
                 FrmGestionImagenes gestImg = new FrmGestionImagenes();
-                gestImg.ShowDialog();
+                if (gestImg.ShowDialog() == DialogResult.OK)
+                {
+                    listaNueva = gestImg.ListaImagenesFinal;
+                    string imagenAMostrar = (listaNueva != null && listaNueva.Count > 0) ? listaNueva[0] : "";
+                    mostrarImagen(imagenAMostrar);
+                    existenCambiosEnImagenes();
+                    ValidaTodoConFuncionesIndividuales();
+                }
             }
         }
         public bool huboCambioEnImagenes(List<string> listaVieja, List<string> listaNueva)

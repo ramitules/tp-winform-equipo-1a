@@ -31,7 +31,6 @@
             this.labelCodArticulo = new System.Windows.Forms.Label();
             this.labelNombre = new System.Windows.Forms.Label();
             this.labelDescripcion = new System.Windows.Forms.Label();
-            this.labelImagen = new System.Windows.Forms.Label();
             this.labelCategoria = new System.Windows.Forms.Label();
             this.labelMarca = new System.Windows.Forms.Label();
             this.labelPrecio = new System.Windows.Forms.Label();
@@ -39,7 +38,6 @@
             this.txtBoxCodArticulo = new System.Windows.Forms.TextBox();
             this.txtBoxNombre = new System.Windows.Forms.TextBox();
             this.txtBoxDescripcion = new System.Windows.Forms.TextBox();
-            this.txtBoxImagen = new System.Windows.Forms.TextBox();
             this.cBoxMarca = new System.Windows.Forms.ComboBox();
             this.cBoxCategoria = new System.Windows.Forms.ComboBox();
             this.numPrecio = new System.Windows.Forms.NumericUpDown();
@@ -54,6 +52,7 @@
             this.btnModificarArticulo = new System.Windows.Forms.Button();
             this.btnEliminarArticulo = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
+            this.labelImagen = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numPrecio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxImagenNueva)).BeginInit();
             this.SuspendLayout();
@@ -85,15 +84,6 @@
             this.labelDescripcion.TabIndex = 2;
             this.labelDescripcion.Text = "Descripcion:";
             // 
-            // labelImagen
-            // 
-            this.labelImagen.AutoSize = true;
-            this.labelImagen.Location = new System.Drawing.Point(33, 237);
-            this.labelImagen.Name = "labelImagen";
-            this.labelImagen.Size = new System.Drawing.Size(45, 13);
-            this.labelImagen.TabIndex = 3;
-            this.labelImagen.Text = "Imagen:";
-            // 
             // labelCategoria
             // 
             this.labelCategoria.AutoSize = true;
@@ -123,14 +113,12 @@
             // 
             // btnGestionarImagen
             // 
-            this.btnGestionarImagen.Enabled = false;
-            this.btnGestionarImagen.Location = new System.Drawing.Point(256, 230);
+            this.btnGestionarImagen.Location = new System.Drawing.Point(119, 234);
             this.btnGestionarImagen.Name = "btnGestionarImagen";
-            this.btnGestionarImagen.Size = new System.Drawing.Size(100, 26);
+            this.btnGestionarImagen.Size = new System.Drawing.Size(131, 25);
             this.btnGestionarImagen.TabIndex = 7;
-            this.btnGestionarImagen.Text = "Gestionar Imagen";
+            this.btnGestionarImagen.Text = "Gestionar Imagenes";
             this.btnGestionarImagen.UseVisualStyleBackColor = true;
-            this.btnGestionarImagen.Visible = false;
             this.btnGestionarImagen.Click += new System.EventHandler(this.btnGestionarImagen_Click);
             // 
             // txtBoxCodArticulo
@@ -157,14 +145,6 @@
             this.txtBoxDescripcion.Size = new System.Drawing.Size(131, 48);
             this.txtBoxDescripcion.TabIndex = 10;
             this.txtBoxDescripcion.TextChanged += new System.EventHandler(this.txtBoxDescripcion_TextChanged);
-            // 
-            // txtBoxImagen
-            // 
-            this.txtBoxImagen.Location = new System.Drawing.Point(119, 234);
-            this.txtBoxImagen.Name = "txtBoxImagen";
-            this.txtBoxImagen.Size = new System.Drawing.Size(131, 20);
-            this.txtBoxImagen.TabIndex = 11;
-            this.txtBoxImagen.TextChanged += new System.EventHandler(this.txtBoxImagen_TextChanged);
             // 
             // cBoxMarca
             // 
@@ -315,6 +295,15 @@
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
+            // labelImagen
+            // 
+            this.labelImagen.AutoSize = true;
+            this.labelImagen.Location = new System.Drawing.Point(32, 240);
+            this.labelImagen.Name = "labelImagen";
+            this.labelImagen.Size = new System.Drawing.Size(56, 13);
+            this.labelImagen.TabIndex = 3;
+            this.labelImagen.Text = "Imagenes:";
+            // 
             // FrmArticuloAgregar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -334,7 +323,6 @@
             this.Controls.Add(this.numPrecio);
             this.Controls.Add(this.cBoxCategoria);
             this.Controls.Add(this.cBoxMarca);
-            this.Controls.Add(this.txtBoxImagen);
             this.Controls.Add(this.txtBoxDescripcion);
             this.Controls.Add(this.txtBoxNombre);
             this.Controls.Add(this.txtBoxCodArticulo);
@@ -362,7 +350,6 @@
         private System.Windows.Forms.Label labelCodArticulo;
         private System.Windows.Forms.Label labelNombre;
         private System.Windows.Forms.Label labelDescripcion;
-        private System.Windows.Forms.Label labelImagen;
         private System.Windows.Forms.Label labelCategoria;
         private System.Windows.Forms.Label labelMarca;
         private System.Windows.Forms.Label labelPrecio;
@@ -370,7 +357,6 @@
         private System.Windows.Forms.TextBox txtBoxCodArticulo;
         private System.Windows.Forms.TextBox txtBoxNombre;
         private System.Windows.Forms.TextBox txtBoxDescripcion;
-        private System.Windows.Forms.TextBox txtBoxImagen;
         private System.Windows.Forms.ComboBox cBoxMarca;
         private System.Windows.Forms.ComboBox cBoxCategoria;
         private System.Windows.Forms.NumericUpDown numPrecio;
@@ -385,5 +371,6 @@
         private System.Windows.Forms.Button btnModificarArticulo;
         private System.Windows.Forms.Button btnEliminarArticulo;
         private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.Label labelImagen;
     }
 }
