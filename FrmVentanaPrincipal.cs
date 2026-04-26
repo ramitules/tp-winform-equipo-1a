@@ -224,19 +224,29 @@ namespace TPWinForm_equipo_1A
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            if (cboBoxCampo.SelectedItem == null && cboBoxCriterio.SelectedItem == null)
+            
+            if (txtBoxBusquedaAvanzada.Text == "")
+            {
+                MessageBox.Show("Ingrese un valor para la busqueda");
+                return;
+            }
+            else if (cboBoxCampo.SelectedItem == null && cboBoxCriterio.SelectedItem == null)
             {
                 MessageBox.Show("Seleccione un campo y un criterio de busqueda");
                 return;
-            } else if (cboBoxCampo.SelectedItem == null)
+            }
+            else if (cboBoxCampo.SelectedItem == null)
             {
                 MessageBox.Show("Seleccione un campo de busqueda");
                 return;
-            } else if (cboBoxCriterio.SelectedItem == null)
+            }
+            else if (cboBoxCriterio.SelectedItem == null)
             {
                 MessageBox.Show("Seleccione un criterio de busqueda");
                 return;
             }
+            
+
 
             List<Articulo> listaFiltrada;
             listaFiltrada = ListaArticulos; // Inicializo la lista filtrada con la lista completa, para luego ir filtrando segun los criterios seleccionados

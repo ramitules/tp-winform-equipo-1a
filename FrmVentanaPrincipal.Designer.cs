@@ -55,7 +55,7 @@
             // 
             this.btnArticuloAgregar.AccessibleName = "";
             this.btnArticuloAgregar.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnArticuloAgregar.Location = new System.Drawing.Point(31, 143);
+            this.btnArticuloAgregar.Location = new System.Drawing.Point(18, 143);
             this.btnArticuloAgregar.Name = "btnArticuloAgregar";
             this.btnArticuloAgregar.Size = new System.Drawing.Size(103, 35);
             this.btnArticuloAgregar.TabIndex = 1;
@@ -66,7 +66,7 @@
             // btnArticuloEliminar
             // 
             this.btnArticuloEliminar.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnArticuloEliminar.Location = new System.Drawing.Point(31, 243);
+            this.btnArticuloEliminar.Location = new System.Drawing.Point(18, 243);
             this.btnArticuloEliminar.Name = "btnArticuloEliminar";
             this.btnArticuloEliminar.Size = new System.Drawing.Size(103, 35);
             this.btnArticuloEliminar.TabIndex = 3;
@@ -82,18 +82,18 @@
             this.dgvArticulos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvArticulos.BackgroundColor = System.Drawing.SystemColors.Menu;
             this.dgvArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvArticulos.Location = new System.Drawing.Point(174, 48);
+            this.dgvArticulos.Location = new System.Drawing.Point(139, 48);
             this.dgvArticulos.Name = "dgvArticulos";
-            this.dgvArticulos.Size = new System.Drawing.Size(733, 322);
+            this.dgvArticulos.Size = new System.Drawing.Size(669, 322);
             this.dgvArticulos.TabIndex = 4;
             this.dgvArticulos.SelectionChanged += new System.EventHandler(this.dgvArticulos_SelectionChanged);
             // 
             // pbxUrl
             // 
             this.pbxUrl.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.pbxUrl.Location = new System.Drawing.Point(946, 128);
+            this.pbxUrl.Location = new System.Drawing.Point(822, 67);
             this.pbxUrl.Name = "pbxUrl";
-            this.pbxUrl.Size = new System.Drawing.Size(238, 238);
+            this.pbxUrl.Size = new System.Drawing.Size(234, 250);
             this.pbxUrl.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbxUrl.TabIndex = 5;
             this.pbxUrl.TabStop = false;
@@ -102,9 +102,9 @@
             // 
             this.btnAnterior.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnAnterior.Enabled = false;
-            this.btnAnterior.Location = new System.Drawing.Point(946, 384);
+            this.btnAnterior.Location = new System.Drawing.Point(889, 327);
             this.btnAnterior.Name = "btnAnterior";
-            this.btnAnterior.Size = new System.Drawing.Size(51, 35);
+            this.btnAnterior.Size = new System.Drawing.Size(47, 38);
             this.btnAnterior.TabIndex = 6;
             this.btnAnterior.Text = "<<";
             this.btnAnterior.UseVisualStyleBackColor = true;
@@ -114,9 +114,9 @@
             // 
             this.btnPosterior.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnPosterior.Enabled = false;
-            this.btnPosterior.Location = new System.Drawing.Point(1133, 384);
+            this.btnPosterior.Location = new System.Drawing.Point(946, 327);
             this.btnPosterior.Name = "btnPosterior";
-            this.btnPosterior.Size = new System.Drawing.Size(51, 35);
+            this.btnPosterior.Size = new System.Drawing.Size(47, 38);
             this.btnPosterior.TabIndex = 7;
             this.btnPosterior.Text = ">>";
             this.btnPosterior.UseVisualStyleBackColor = true;
@@ -124,8 +124,10 @@
             // 
             // lblBusqueda
             // 
+            this.lblBusqueda.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblBusqueda.AutoSize = true;
-            this.lblBusqueda.Location = new System.Drawing.Point(171, 20);
+            this.lblBusqueda.Location = new System.Drawing.Point(136, 20);
             this.lblBusqueda.Name = "lblBusqueda";
             this.lblBusqueda.Size = new System.Drawing.Size(90, 13);
             this.lblBusqueda.TabIndex = 8;
@@ -133,15 +135,17 @@
             // 
             // txtBoxBuscar
             // 
-            this.txtBoxBuscar.Location = new System.Drawing.Point(267, 17);
+            this.txtBoxBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxBuscar.Location = new System.Drawing.Point(232, 17);
             this.txtBoxBuscar.Name = "txtBoxBuscar";
-            this.txtBoxBuscar.Size = new System.Drawing.Size(144, 20);
+            this.txtBoxBuscar.Size = new System.Drawing.Size(173, 20);
             this.txtBoxBuscar.TabIndex = 9;
             this.txtBoxBuscar.TextChanged += new System.EventHandler(this.txtBoxBuscar_TextChanged);
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(640, 21);
+            this.btnBuscar.Location = new System.Drawing.Point(577, 21);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(75, 23);
             this.btnBuscar.TabIndex = 10;
@@ -152,7 +156,7 @@
             // btnSeleccionar
             // 
             this.btnSeleccionar.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnSeleccionar.Location = new System.Drawing.Point(31, 193);
+            this.btnSeleccionar.Location = new System.Drawing.Point(18, 193);
             this.btnSeleccionar.Name = "btnSeleccionar";
             this.btnSeleccionar.Size = new System.Drawing.Size(103, 35);
             this.btnSeleccionar.TabIndex = 11;
@@ -200,6 +204,8 @@
             // 
             // gBoxBusquedaAvanzada
             // 
+            this.gBoxBusquedaAvanzada.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gBoxBusquedaAvanzada.Controls.Add(this.txtBoxBusquedaAvanzada);
             this.gBoxBusquedaAvanzada.Controls.Add(this.lblBusquedaAvanzada);
             this.gBoxBusquedaAvanzada.Controls.Add(this.cboBoxCriterio);
@@ -207,16 +213,16 @@
             this.gBoxBusquedaAvanzada.Controls.Add(this.btnBuscar);
             this.gBoxBusquedaAvanzada.Controls.Add(this.cboBoxCampo);
             this.gBoxBusquedaAvanzada.Controls.Add(this.lblCampo);
-            this.gBoxBusquedaAvanzada.Location = new System.Drawing.Point(174, 377);
+            this.gBoxBusquedaAvanzada.Location = new System.Drawing.Point(139, 377);
             this.gBoxBusquedaAvanzada.Name = "gBoxBusquedaAvanzada";
-            this.gBoxBusquedaAvanzada.Size = new System.Drawing.Size(733, 59);
+            this.gBoxBusquedaAvanzada.Size = new System.Drawing.Size(669, 59);
             this.gBoxBusquedaAvanzada.TabIndex = 20;
             this.gBoxBusquedaAvanzada.TabStop = false;
             this.gBoxBusquedaAvanzada.Text = "Busqueda avanzada";
             // 
             // txtBoxBusquedaAvanzada
             // 
-            this.txtBoxBusquedaAvanzada.Location = new System.Drawing.Point(390, 22);
+            this.txtBoxBusquedaAvanzada.Location = new System.Drawing.Point(382, 22);
             this.txtBoxBusquedaAvanzada.Name = "txtBoxBusquedaAvanzada";
             this.txtBoxBusquedaAvanzada.Size = new System.Drawing.Size(153, 20);
             this.txtBoxBusquedaAvanzada.TabIndex = 21;
@@ -224,7 +230,7 @@
             // lblBusquedaAvanzada
             // 
             this.lblBusquedaAvanzada.AutoSize = true;
-            this.lblBusquedaAvanzada.Location = new System.Drawing.Point(302, 26);
+            this.lblBusquedaAvanzada.Location = new System.Drawing.Point(297, 26);
             this.lblBusquedaAvanzada.Name = "lblBusquedaAvanzada";
             this.lblBusquedaAvanzada.Size = new System.Drawing.Size(81, 13);
             this.lblBusquedaAvanzada.TabIndex = 20;
@@ -232,8 +238,10 @@
             // 
             // lblResultadoBusqueda
             // 
+            this.lblResultadoBusqueda.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblResultadoBusqueda.AutoSize = true;
-            this.lblResultadoBusqueda.Location = new System.Drawing.Point(426, 20);
+            this.lblResultadoBusqueda.Location = new System.Drawing.Point(411, 20);
             this.lblResultadoBusqueda.Name = "lblResultadoBusqueda";
             this.lblResultadoBusqueda.Size = new System.Drawing.Size(216, 13);
             this.lblResultadoBusqueda.TabIndex = 21;
@@ -244,7 +252,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1211, 455);
+            this.ClientSize = new System.Drawing.Size(1084, 455);
             this.Controls.Add(this.lblResultadoBusqueda);
             this.Controls.Add(this.gBoxBusquedaAvanzada);
             this.Controls.Add(this.btnSeleccionar);
@@ -257,6 +265,7 @@
             this.Controls.Add(this.btnArticuloEliminar);
             this.Controls.Add(this.btnArticuloAgregar);
             this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(1100, 494);
             this.Name = "FrmVentanaPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestion de articulos";
