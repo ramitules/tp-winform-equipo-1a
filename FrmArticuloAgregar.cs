@@ -44,13 +44,13 @@ namespace TPWinForm_equipo_1A
             numPrecio.Value = art.Precio;
             txtBoxImagen.Text = art.Imagen[0];
             cBoxMarca.SelectedValue = art.Marca.Id;
-            cBoxCategoria.SelectedValue = art.Categoria.Id; 
-            txtBoxCodArticulo.ReadOnly = true; 
+            cBoxCategoria.SelectedValue = art.Categoria.Id;
+            txtBoxCodArticulo.ReadOnly = true;
             txtBoxNombre.ReadOnly = true;
             txtBoxDescripcion.ReadOnly = true;
             txtBoxImagen.ReadOnly = true;
             btnGestionarImagen.Visible = true;
-            
+
             btnAgregarMarca.Enabled = false;
             btnEliminarMarca.Enabled = false;
             btnAgregarCategoria.Enabled = false;
@@ -60,8 +60,11 @@ namespace TPWinForm_equipo_1A
             cBoxCategoria.Enabled = false;
             btnModificarArticulo.Visible = true;
             btnEliminarArticulo.Visible = true;
-            btnAceptar.Enabled = false;
+            btnGuardar.Enabled = false;
         }
+
+
+        // CARGAR VENTANA
 
         private void ArticuloAgregar_Load(object sender, EventArgs e)
         {
@@ -79,6 +82,7 @@ namespace TPWinForm_equipo_1A
             {
                 throw;
             }
+
         }
 
         private void CargarComboCategoria()
@@ -98,41 +102,12 @@ namespace TPWinForm_equipo_1A
             cBoxMarca.DataSource = MarcaNegocio.listar();
         }
 
-        private void btnPrueba_Click(object sender, EventArgs e)
-        {
- 
-        }
-        private void btnAgregarArticulo_Click(object sender, EventArgs e)
-        {
-
-        }
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Close();
-
         }
 
-
-
-        //Evento para eliminar
-        private void txtBoxCodArticulo_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            
-        }
-
-        private void txtBoxNombre_TextChanged(object sender, EventArgs e)
-        {
-            if (txtBoxNombre.Text.Trim() != "")
-            {
-                lblNombre.Visible = false;
-            }
-            else
-            {
-                lblNombre.Visible = true;
-            }
-            //btnAceptar.Enabled = existenCambios();
-            ValidaTodoConFuncionesIndividuales();
-        }
+        //Evento para eliminar (¿?NO SE ENTIENDE EL COMENTARIO)
 
         private void txtBoxCodArticulo_TextChanged(object sender, EventArgs e)
         {
@@ -147,6 +122,21 @@ namespace TPWinForm_equipo_1A
             //btnAceptar.Enabled = existenCambios();
             ValidaTodoConFuncionesIndividuales();
         }
+        private void txtBoxNombre_TextChanged(object sender, EventArgs e)
+        {
+            if (txtBoxNombre.Text.Trim() != "")
+            {
+                lblNombre.Visible = false;
+            }
+            else
+            {
+                lblNombre.Visible = true;
+            }
+            //btnAceptar.Enabled = existenCambios();
+            ValidaTodoConFuncionesIndividuales();
+        }
+
+
 
         private void txtBoxImagen_TextChanged(object sender, EventArgs e)
         {
@@ -167,18 +157,13 @@ namespace TPWinForm_equipo_1A
             }
         }
 
+
+        // BOTON AGREGAR Y QUITAR MARCA
         private void btnAgregarMarca_Click(object sender, EventArgs e)
         {
             FrmAgregarMarca frmMarca = new FrmAgregarMarca();
             frmMarca.Show();
             CargarComboMarca();
-        }
-
-        private void btnAgregarCategoria_Click(object sender, EventArgs e)
-        {
-            FrmAgregarCategoria frmCategoria = new FrmAgregarCategoria();
-            frmCategoria.Show();
-            CargarComboCategoria();
         }
 
         private void btnEliminarMarca_Click(object sender, EventArgs e)
@@ -196,6 +181,15 @@ namespace TPWinForm_equipo_1A
             }
         }
 
+
+        // BOTON AGREGAR Y QUITAR CATEGORIA
+        private void btnAgregarCategoria_Click(object sender, EventArgs e)
+        {
+            FrmAgregarCategoria frmCategoria = new FrmAgregarCategoria();
+            frmCategoria.Show();
+            CargarComboCategoria();
+        }
+
         private void btnEliminarCategoria_Click(object sender, EventArgs e)
         {
             if (cBoxCategoria.Text == "")
@@ -209,11 +203,6 @@ namespace TPWinForm_equipo_1A
                 catNegocio.eliminar(cBoxCategoria.Text);
                 CargarComboCategoria();
             }
-        }
-
-        private void labelImagen_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btnModificarArticulo_Click(object sender, EventArgs e)
@@ -350,6 +339,8 @@ namespace TPWinForm_equipo_1A
             return false;
         }
 
+        // BOTON GUARDAR CAMBIOS
+
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -468,7 +459,7 @@ namespace TPWinForm_equipo_1A
         }
         private void refrescarBotonAceptar()
         {
-            btnAceptar.Enabled = ValidarCondiciones();
+            btnGuardar.Enabled = ValidarCondiciones();
         }
 
         private void btnEliminarArticulo_Click(object sender, EventArgs e)
@@ -509,7 +500,7 @@ namespace TPWinForm_equipo_1A
                 }
             }
             existenCambiosEnImg = false;
-        }//Nueva creada
+        }//Nueva cread
         public void validarPrecio()
         {
             if (numPrecio.Value > 0)
@@ -562,12 +553,13 @@ namespace TPWinForm_equipo_1A
             camposObligatoriosCompletos();
             if ((camposObligatorios == true && precioMayorACero == true && existenCambios == true) || existenCambiosEnImg == true)
             {
-                btnAceptar.Enabled = true;
+                btnGuardar.Enabled = true;
             }
             else
             {
-                btnAceptar.Enabled = false;
+                btnGuardar.Enabled = false;
             }
         }
+
     }
 }

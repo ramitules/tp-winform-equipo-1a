@@ -38,6 +38,8 @@ namespace TPWinForm_equipo_1A
 
             cboBoxCriterio.Items.Add("Contiene");
             cboBoxCriterio.Items.Add("Exacto");
+
+            //
         }
 
         /// <summary>

@@ -53,7 +53,7 @@
             this.btnEliminarCategoria = new System.Windows.Forms.Button();
             this.btnModificarArticulo = new System.Windows.Forms.Button();
             this.btnEliminarArticulo = new System.Windows.Forms.Button();
-            this.btnAceptar = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numPrecio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxImagenNueva)).BeginInit();
             this.SuspendLayout();
@@ -93,7 +93,6 @@
             this.labelImagen.Size = new System.Drawing.Size(45, 13);
             this.labelImagen.TabIndex = 3;
             this.labelImagen.Text = "Imagen:";
-            this.labelImagen.Click += new System.EventHandler(this.labelImagen_Click);
             // 
             // labelCategoria
             // 
@@ -141,7 +140,6 @@
             this.txtBoxCodArticulo.Size = new System.Drawing.Size(131, 20);
             this.txtBoxCodArticulo.TabIndex = 8;
             this.txtBoxCodArticulo.TextChanged += new System.EventHandler(this.txtBoxCodArticulo_TextChanged);
-            this.txtBoxCodArticulo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxCodArticulo_KeyPress);
             // 
             // txtBoxNombre
             // 
@@ -205,9 +203,10 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(554, 381);
+            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelar.Location = new System.Drawing.Point(439, 371);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(106, 26);
+            this.btnCancelar.Size = new System.Drawing.Size(120, 39);
             this.btnCancelar.TabIndex = 19;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -235,9 +234,10 @@
             // 
             // pbxImagenNueva
             // 
+            this.pbxImagenNueva.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pbxImagenNueva.Location = new System.Drawing.Point(390, 50);
             this.pbxImagenNueva.Name = "pbxImagenNueva";
-            this.pbxImagenNueva.Size = new System.Drawing.Size(270, 325);
+            this.pbxImagenNueva.Size = new System.Drawing.Size(250, 302);
             this.pbxImagenNueva.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbxImagenNueva.TabIndex = 22;
             this.pbxImagenNueva.TabStop = false;
@@ -284,7 +284,7 @@
             // 
             // btnModificarArticulo
             // 
-            this.btnModificarArticulo.Location = new System.Drawing.Point(119, 317);
+            this.btnModificarArticulo.Location = new System.Drawing.Point(119, 276);
             this.btnModificarArticulo.Name = "btnModificarArticulo";
             this.btnModificarArticulo.Size = new System.Drawing.Size(131, 26);
             this.btnModificarArticulo.TabIndex = 28;
@@ -295,7 +295,7 @@
             // 
             // btnEliminarArticulo
             // 
-            this.btnEliminarArticulo.Location = new System.Drawing.Point(119, 349);
+            this.btnEliminarArticulo.Location = new System.Drawing.Point(119, 308);
             this.btnEliminarArticulo.Name = "btnEliminarArticulo";
             this.btnEliminarArticulo.Size = new System.Drawing.Size(131, 26);
             this.btnEliminarArticulo.TabIndex = 29;
@@ -304,22 +304,23 @@
             this.btnEliminarArticulo.Visible = false;
             this.btnEliminarArticulo.Click += new System.EventHandler(this.btnEliminarArticulo_Click);
             // 
-            // btnAceptar
+            // btnGuardar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(390, 381);
-            this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(106, 26);
-            this.btnAceptar.TabIndex = 30;
-            this.btnAceptar.Text = "Aceptar";
-            this.btnAceptar.UseVisualStyleBackColor = true;
-            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
+            this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGuardar.Location = new System.Drawing.Point(188, 371);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(120, 39);
+            this.btnGuardar.TabIndex = 30;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // FrmArticuloAgregar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(740, 436);
-            this.Controls.Add(this.btnAceptar);
+            this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.btnEliminarArticulo);
             this.Controls.Add(this.btnModificarArticulo);
             this.Controls.Add(this.btnEliminarCategoria);
@@ -345,6 +346,7 @@
             this.Controls.Add(this.labelDescripcion);
             this.Controls.Add(this.labelNombre);
             this.Controls.Add(this.labelCodArticulo);
+            this.MinimumSize = new System.Drawing.Size(756, 475);
             this.Name = "FrmArticuloAgregar";
             this.Text = "Agregar Artículo";
             this.Load += new System.EventHandler(this.ArticuloAgregar_Load);
@@ -382,6 +384,6 @@
         private System.Windows.Forms.Button btnEliminarCategoria;
         private System.Windows.Forms.Button btnModificarArticulo;
         private System.Windows.Forms.Button btnEliminarArticulo;
-        private System.Windows.Forms.Button btnAceptar;
+        private System.Windows.Forms.Button btnGuardar;
     }
 }
