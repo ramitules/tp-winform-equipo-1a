@@ -35,7 +35,7 @@
             this.labelCategoria = new System.Windows.Forms.Label();
             this.labelMarca = new System.Windows.Forms.Label();
             this.labelPrecio = new System.Windows.Forms.Label();
-            this.btnAgregarImagen = new System.Windows.Forms.Button();
+            this.btnGestionarImagen = new System.Windows.Forms.Button();
             this.txtBoxCodArticulo = new System.Windows.Forms.TextBox();
             this.txtBoxNombre = new System.Windows.Forms.TextBox();
             this.txtBoxDescripcion = new System.Windows.Forms.TextBox();
@@ -51,9 +51,9 @@
             this.btnAgregarCategoria = new System.Windows.Forms.Button();
             this.btnEliminarMarca = new System.Windows.Forms.Button();
             this.btnEliminarCategoria = new System.Windows.Forms.Button();
-            this.btnEliminarImagen = new System.Windows.Forms.Button();
             this.btnModificarArticulo = new System.Windows.Forms.Button();
             this.btnEliminarArticulo = new System.Windows.Forms.Button();
+            this.btnAceptar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numPrecio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxImagenNueva)).BeginInit();
             this.SuspendLayout();
@@ -88,11 +88,12 @@
             // labelImagen
             // 
             this.labelImagen.AutoSize = true;
-            this.labelImagen.Location = new System.Drawing.Point(31, 211);
+            this.labelImagen.Location = new System.Drawing.Point(33, 237);
             this.labelImagen.Name = "labelImagen";
             this.labelImagen.Size = new System.Drawing.Size(45, 13);
             this.labelImagen.TabIndex = 3;
             this.labelImagen.Text = "Imagen:";
+            this.labelImagen.Click += new System.EventHandler(this.labelImagen_Click);
             // 
             // labelCategoria
             // 
@@ -115,21 +116,23 @@
             // labelPrecio
             // 
             this.labelPrecio.AutoSize = true;
-            this.labelPrecio.Location = new System.Drawing.Point(31, 236);
+            this.labelPrecio.Location = new System.Drawing.Point(31, 210);
             this.labelPrecio.Name = "labelPrecio";
             this.labelPrecio.Size = new System.Drawing.Size(40, 13);
             this.labelPrecio.TabIndex = 6;
             this.labelPrecio.Text = "Precio:";
             // 
-            // btnAgregarImagen
+            // btnGestionarImagen
             // 
-            this.btnAgregarImagen.Location = new System.Drawing.Point(34, 317);
-            this.btnAgregarImagen.Name = "btnAgregarImagen";
-            this.btnAgregarImagen.Size = new System.Drawing.Size(141, 26);
-            this.btnAgregarImagen.TabIndex = 7;
-            this.btnAgregarImagen.Text = "Agregar Imagen";
-            this.btnAgregarImagen.UseVisualStyleBackColor = true;
-            this.btnAgregarImagen.Click += new System.EventHandler(this.btnAgregarArticulo_Click);
+            this.btnGestionarImagen.Enabled = false;
+            this.btnGestionarImagen.Location = new System.Drawing.Point(256, 230);
+            this.btnGestionarImagen.Name = "btnGestionarImagen";
+            this.btnGestionarImagen.Size = new System.Drawing.Size(100, 26);
+            this.btnGestionarImagen.TabIndex = 7;
+            this.btnGestionarImagen.Text = "Gestionar Imagen";
+            this.btnGestionarImagen.UseVisualStyleBackColor = true;
+            this.btnGestionarImagen.Visible = false;
+            this.btnGestionarImagen.Click += new System.EventHandler(this.btnGestionarImagen_Click);
             // 
             // txtBoxCodArticulo
             // 
@@ -155,10 +158,11 @@
             this.txtBoxDescripcion.Name = "txtBoxDescripcion";
             this.txtBoxDescripcion.Size = new System.Drawing.Size(131, 48);
             this.txtBoxDescripcion.TabIndex = 10;
+            this.txtBoxDescripcion.TextChanged += new System.EventHandler(this.txtBoxDescripcion_TextChanged);
             // 
             // txtBoxImagen
             // 
-            this.txtBoxImagen.Location = new System.Drawing.Point(119, 208);
+            this.txtBoxImagen.Location = new System.Drawing.Point(119, 234);
             this.txtBoxImagen.Name = "txtBoxImagen";
             this.txtBoxImagen.Size = new System.Drawing.Size(131, 20);
             this.txtBoxImagen.TabIndex = 11;
@@ -172,6 +176,7 @@
             this.cBoxMarca.Name = "cBoxMarca";
             this.cBoxMarca.Size = new System.Drawing.Size(131, 21);
             this.cBoxMarca.TabIndex = 14;
+            this.cBoxMarca.SelectedIndexChanged += new System.EventHandler(this.cBoxMarca_SelectedIndexChanged);
             // 
             // cBoxCategoria
             // 
@@ -181,11 +186,12 @@
             this.cBoxCategoria.Name = "cBoxCategoria";
             this.cBoxCategoria.Size = new System.Drawing.Size(131, 21);
             this.cBoxCategoria.TabIndex = 15;
+            this.cBoxCategoria.SelectedIndexChanged += new System.EventHandler(this.cBoxCategoria_SelectedIndexChanged);
             // 
             // numPrecio
             // 
             this.numPrecio.DecimalPlaces = 2;
-            this.numPrecio.Location = new System.Drawing.Point(119, 234);
+            this.numPrecio.Location = new System.Drawing.Point(119, 208);
             this.numPrecio.Maximum = new decimal(new int[] {
             9999999,
             0,
@@ -195,6 +201,7 @@
             this.numPrecio.Size = new System.Drawing.Size(131, 20);
             this.numPrecio.TabIndex = 16;
             this.numPrecio.ThousandsSeparator = true;
+            this.numPrecio.ValueChanged += new System.EventHandler(this.numPrecio_ValueChanged);
             // 
             // btnCancelar
             // 
@@ -275,41 +282,45 @@
             this.btnEliminarCategoria.UseVisualStyleBackColor = true;
             this.btnEliminarCategoria.Click += new System.EventHandler(this.btnEliminarCategoria_Click);
             // 
-            // btnEliminarImagen
-            // 
-            this.btnEliminarImagen.Location = new System.Drawing.Point(34, 349);
-            this.btnEliminarImagen.Name = "btnEliminarImagen";
-            this.btnEliminarImagen.Size = new System.Drawing.Size(141, 26);
-            this.btnEliminarImagen.TabIndex = 27;
-            this.btnEliminarImagen.Text = "Eliminar esta imagen";
-            this.btnEliminarImagen.UseVisualStyleBackColor = true;
-            // 
             // btnModificarArticulo
             // 
-            this.btnModificarArticulo.Location = new System.Drawing.Point(200, 317);
+            this.btnModificarArticulo.Location = new System.Drawing.Point(119, 317);
             this.btnModificarArticulo.Name = "btnModificarArticulo";
-            this.btnModificarArticulo.Size = new System.Drawing.Size(141, 26);
+            this.btnModificarArticulo.Size = new System.Drawing.Size(131, 26);
             this.btnModificarArticulo.TabIndex = 28;
             this.btnModificarArticulo.Text = "Modificar Artículo";
             this.btnModificarArticulo.UseVisualStyleBackColor = true;
+            this.btnModificarArticulo.Visible = false;
+            this.btnModificarArticulo.Click += new System.EventHandler(this.btnModificarArticulo_Click);
             // 
             // btnEliminarArticulo
             // 
-            this.btnEliminarArticulo.Location = new System.Drawing.Point(200, 349);
+            this.btnEliminarArticulo.Location = new System.Drawing.Point(119, 349);
             this.btnEliminarArticulo.Name = "btnEliminarArticulo";
-            this.btnEliminarArticulo.Size = new System.Drawing.Size(141, 26);
+            this.btnEliminarArticulo.Size = new System.Drawing.Size(131, 26);
             this.btnEliminarArticulo.TabIndex = 29;
             this.btnEliminarArticulo.Text = "Eliminar Artículo";
             this.btnEliminarArticulo.UseVisualStyleBackColor = true;
+            this.btnEliminarArticulo.Visible = false;
+            // 
+            // btnAceptar
+            // 
+            this.btnAceptar.Location = new System.Drawing.Point(390, 381);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(106, 26);
+            this.btnAceptar.TabIndex = 30;
+            this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // FrmArticuloAgregar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(740, 436);
+            this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.btnEliminarArticulo);
             this.Controls.Add(this.btnModificarArticulo);
-            this.Controls.Add(this.btnEliminarImagen);
             this.Controls.Add(this.btnEliminarCategoria);
             this.Controls.Add(this.btnEliminarMarca);
             this.Controls.Add(this.btnAgregarCategoria);
@@ -325,7 +336,7 @@
             this.Controls.Add(this.txtBoxDescripcion);
             this.Controls.Add(this.txtBoxNombre);
             this.Controls.Add(this.txtBoxCodArticulo);
-            this.Controls.Add(this.btnAgregarImagen);
+            this.Controls.Add(this.btnGestionarImagen);
             this.Controls.Add(this.labelPrecio);
             this.Controls.Add(this.labelMarca);
             this.Controls.Add(this.labelCategoria);
@@ -352,7 +363,7 @@
         private System.Windows.Forms.Label labelCategoria;
         private System.Windows.Forms.Label labelMarca;
         private System.Windows.Forms.Label labelPrecio;
-        private System.Windows.Forms.Button btnAgregarImagen;
+        private System.Windows.Forms.Button btnGestionarImagen;
         private System.Windows.Forms.TextBox txtBoxCodArticulo;
         private System.Windows.Forms.TextBox txtBoxNombre;
         private System.Windows.Forms.TextBox txtBoxDescripcion;
@@ -368,8 +379,8 @@
         private System.Windows.Forms.Button btnAgregarCategoria;
         private System.Windows.Forms.Button btnEliminarMarca;
         private System.Windows.Forms.Button btnEliminarCategoria;
-        private System.Windows.Forms.Button btnEliminarImagen;
         private System.Windows.Forms.Button btnModificarArticulo;
         private System.Windows.Forms.Button btnEliminarArticulo;
+        private System.Windows.Forms.Button btnAceptar;
     }
 }

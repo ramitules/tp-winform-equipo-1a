@@ -95,7 +95,8 @@ namespace TPWinForm_equipo_1A
                 return;
             articuloActual = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
             indiceActual = 0;
-            mostrarImagen(articuloActual.Imagen[indiceActual]);
+            string url = articuloActual.Imagen[indiceActual] != null ? articuloActual.Imagen[indiceActual] : "";
+            mostrarImagen(url);
             validarBotonAnteriorPosterior();
         }
 
@@ -179,6 +180,7 @@ namespace TPWinForm_equipo_1A
 
             FrmArticuloAgregar modif = new FrmArticuloAgregar(seleccionado);
             modif.ShowDialog();
+            Cargar();
         }
         private void txtBoxBuscar_TextChanged(object sender, EventArgs e)
         {
