@@ -302,6 +302,7 @@
             this.btnEliminarArticulo.Text = "Eliminar Artículo";
             this.btnEliminarArticulo.UseVisualStyleBackColor = true;
             this.btnEliminarArticulo.Visible = false;
+            this.btnEliminarArticulo.Click += new System.EventHandler(this.btnEliminarArticulo_Click);
             // 
             // btnAceptar
             // 
