@@ -20,6 +20,12 @@ namespace TPWinForm_equipo_1A
         private List<string> listaVieja = new List<string>();
         private List<string> listaNueva;
         private bool articuloNuevo = true;
+
+        private bool camposObligatorios = false;
+        private bool precioMayorACero = false;
+        private bool existenCambios = false;
+        private bool existenCambiosEnImg = false;
+
         public FrmArticuloAgregar()
         {
             InitializeComponent();
@@ -67,6 +73,7 @@ namespace TPWinForm_equipo_1A
 
                 //pbxImagenNueva.Load("https://media..) esta linea la saco para poner una funcion que cargue la imagen.
                 mostrarImagen(txtBoxImagen.Text); //carga la primer imagen del obeto, si la tiene claro. 
+                ValidaTodoConFuncionesIndividuales();
             }
             catch (Exception)
             {
@@ -123,7 +130,8 @@ namespace TPWinForm_equipo_1A
             {
                 lblNombre.Visible = true;
             }
-            btnAceptar.Enabled = existenCambios();
+            //btnAceptar.Enabled = existenCambios();
+            ValidaTodoConFuncionesIndividuales();
         }
 
         private void txtBoxCodArticulo_TextChanged(object sender, EventArgs e)
@@ -136,15 +144,16 @@ namespace TPWinForm_equipo_1A
             {
                 lblCodigo.Visible = true;
             }
-            btnAceptar.Enabled = existenCambios();
+            //btnAceptar.Enabled = existenCambios();
+            ValidaTodoConFuncionesIndividuales();
         }
 
         private void txtBoxImagen_TextChanged(object sender, EventArgs e)
         {
             string urlImagenNueva = txtBoxImagen.Text;
             mostrarImagen(urlImagenNueva);
-            if (!articuloNuevo)
-                btnAceptar.Enabled = existenCambios();
+            //if (!articuloNuevo)
+                //btnAceptar.Enabled = existenCambios();
         }  //Este capas ya no sirva
         public void mostrarImagen(string url)
         {
@@ -261,22 +270,24 @@ namespace TPWinForm_equipo_1A
 
         private void txtBoxDescripcion_TextChanged(object sender, EventArgs e)
         {
-            refrescarBotonAceptar();
+            ValidaTodoConFuncionesIndividuales();
+            //refrescarBotonAceptar();
         }
 
         private void cBoxMarca_SelectedIndexChanged(object sender, EventArgs e)
         {
-            refrescarBotonAceptar();
+            //refrescarBotonAceptar();
         }
 
         private void cBoxCategoria_SelectedIndexChanged(object sender, EventArgs e)
         {
-            refrescarBotonAceptar();
+            //refrescarBotonAceptar();
         }
 
         private void numPrecio_ValueChanged(object sender, EventArgs e)
-        { 
-            refrescarBotonAceptar();
+        {
+            ValidaTodoConFuncionesIndividuales();
+            //refrescarBotonAceptar();
         }
 
         private void btnGestionarImagen_Click(object sender, EventArgs e)
@@ -294,12 +305,13 @@ namespace TPWinForm_equipo_1A
 
                         string imagenAMostrar = (listaNueva != null && listaNueva.Count > 0) ? listaNueva[0] : "";
                         mostrarImagen(imagenAMostrar);
-
-                        refrescarBotonAceptar();
+                        existenCambiosEnImagenes();//nueva linea convertiria variable global en true si cambio algo de las imagenes 
+                        ValidaTodoConFuncionesIndividuales();
+                        //refrescarBotonAceptar();
                     }
                     else
                     {
-                        btnAceptar.Enabled = false;
+                        //btnAceptar.Enabled = false;
                     }
                 }
             }
@@ -328,7 +340,7 @@ namespace TPWinForm_equipo_1A
             } 
             return false;
         }
-        public bool existenCambios()
+        public bool existenCambioss()
         {
 
             if (validarCambioCampos() || huboCambioEnImagenes(this.listaVieja, this.listaNueva))
@@ -415,15 +427,12 @@ namespace TPWinForm_equipo_1A
             {
                 return false;
             }
-
-            
             if (articuloNuevo)
             {
                 return true;
             }
             int idMarca = cBoxMarca.SelectedValue != null ? (int)cBoxMarca.SelectedValue : 0;
             int idCategoria = cBoxCategoria.SelectedValue != null ? (int)cBoxCategoria.SelectedValue : 0;
-
             //Este codigo es para ver si existen cambios
             bool huboCambioEnTexto =
                 txtBoxCodArticulo.Text.Trim() != articuloTraido.CodArticulo.Trim() ||
@@ -477,6 +486,87 @@ namespace TPWinForm_equipo_1A
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+            }
+        }
+        public void existenCambiosEnImagenes()
+        {
+            if (listaNueva == null)
+            {
+                existenCambiosEnImg = false;
+                return;
+            }
+            if (listaVieja.Count != listaNueva.Count)
+            {
+                existenCambiosEnImg = true;
+                return;
+            }
+            for (int i = 0; i < listaVieja.Count; i++)
+            {
+                if (listaVieja[i].Trim() != listaNueva[i].Trim())
+                {
+                    existenCambiosEnImg = true;
+                    return;
+                }
+            }
+            existenCambiosEnImg = false;
+        }//Nueva creada
+        public void validarPrecio()
+        {
+            if (numPrecio.Value > 0)
+            {
+                precioMayorACero = true;
+            }
+            else
+            {
+                precioMayorACero = false;
+            }
+        }//Nueva creada
+        public void cambioAlgunCampo()
+        {
+            if (!articuloNuevo)
+            {
+                string codNuevo = txtBoxCodArticulo.Text;
+                string nombreNuevo = txtBoxNombre.Text;
+                string descripcionNueva = txtBoxDescripcion.Text;
+                decimal precioNuevo = numPrecio.Value;
+                if (articuloTraido.CodArticulo != codNuevo || articuloTraido.Nombre != nombreNuevo || articuloTraido.Descripcion != descripcionNueva || articuloTraido.Precio != precioNuevo)
+                {
+                    existenCambios = true;
+                }
+                else
+                {
+                    existenCambios = false;
+                }
+            }
+            else
+            {
+                existenCambios = true;
+            }
+        }//Nueva creada
+        public void camposObligatoriosCompletos()
+        {
+            if (!string.IsNullOrWhiteSpace(txtBoxCodArticulo.Text) && !string.IsNullOrWhiteSpace(txtBoxNombre.Text))
+            {
+                camposObligatorios = true;
+            }
+            else
+            {
+                camposObligatorios = false;
+            }
+        }//Nueva creada
+        public void ValidaTodoConFuncionesIndividuales()
+        {
+            existenCambiosEnImagenes();
+            validarPrecio();
+            cambioAlgunCampo();
+            camposObligatoriosCompletos();
+            if ((camposObligatorios == true && precioMayorACero == true && existenCambios == true) || existenCambiosEnImg == true)
+            {
+                btnAceptar.Enabled = true;
+            }
+            else
+            {
+                btnAceptar.Enabled = false;
             }
         }
     }
