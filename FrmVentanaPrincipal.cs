@@ -26,8 +26,18 @@ namespace TPWinForm_equipo_1A
         //
         private void VentanaPrincipal_Load(object sender, EventArgs e)
         {
-
             Cargar();
+
+            //Se cargan los desplegables de la busqueda avanzada
+
+            cboBoxCampo.Items.Add("Articulo");
+            cboBoxCampo.Items.Add("Nombre");
+            cboBoxCampo.Items.Add("Marca");
+            cboBoxCampo.Items.Add("Categoria");
+            cboBoxCampo.Items.Add("Descripcion");
+
+            cboBoxCriterio.Items.Add("Contiene");
+            cboBoxCriterio.Items.Add("Exacto");
         }
 
         /// <summary>
@@ -157,17 +167,6 @@ namespace TPWinForm_equipo_1A
             }
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
-        {
-            List<Articulo> listaFiltrada;
-
-            listaFiltrada = ListaArticulos.FindAll(x => x.Nombre.ToUpper().Contains(txtBoxBuscar.Text.ToUpper()));
-
-            dgvArticulos.DataSource = null; //Siempre hay que hacer una limpieza antes de pisar el DataSource, sino no se actualiza el DataGridView
-            dgvArticulos.DataSource = listaFiltrada;
-            ocultarColumnas();
-        }
-
         private void btnSeleccionar_Click(object sender, EventArgs e)
         {
             // Validacion: al menos una fila seleccionada
@@ -180,6 +179,106 @@ namespace TPWinForm_equipo_1A
 
             FrmArticuloAgregar modif = new FrmArticuloAgregar(seleccionado);
             modif.ShowDialog();
+        }
+        private void txtBoxBuscar_TextChanged(object sender, EventArgs e)
+        {
+            List<Articulo> listaFiltrada;
+            string busqueda = txtBoxBuscar.Text;
+
+            if (busqueda.Length > 1)
+            {
+                //Filtro por nombre o codigo de articulo
+                listaFiltrada = ListaArticulos.FindAll(x => x.Nombre.ToUpper().Contains(txtBoxBuscar.Text.ToUpper()) || x.CodArticulo.ToUpper().Contains(txtBoxBuscar.Text.ToUpper()));
+
+            }
+            else
+            {
+                listaFiltrada = ListaArticulos;
+            }
+
+            dgvArticulos.DataSource = null; //Siempre hay que hacer una limpieza antes de pisar el DataSource, sino no se actualiza el DataGridView
+            dgvArticulos.DataSource = listaFiltrada;
+            ocultarColumnas();
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            if (cboBoxCampo.SelectedItem == null && cboBoxCriterio.SelectedItem == null)
+            {
+                MessageBox.Show("Seleccione un campo y un criterio de busqueda");
+                return;
+            } else if (cboBoxCampo.SelectedItem == null)
+            {
+                MessageBox.Show("Seleccione un campo de busqueda");
+                return;
+            } else if (cboBoxCriterio.SelectedItem == null)
+            {
+                MessageBox.Show("Seleccione un criterio de busqueda");
+                return;
+            }
+
+            List<Articulo> listaFiltrada;
+            listaFiltrada = ListaArticulos; // Inicializo la lista filtrada con la lista completa, para luego ir filtrando segun los criterios seleccionados
+            
+            string busqueda = txtBoxBusquedaAvanzada.Text;
+            string campo = cboBoxCampo.SelectedItem.ToString();
+            string criterio = cboBoxCriterio.SelectedItem.ToString();
+
+            switch (campo)
+            {
+                case "Articulo":
+                    if (criterio == "Contiene")
+                        listaFiltrada = ListaArticulos.FindAll(x => x.CodArticulo.ToUpper().Contains(busqueda.ToUpper()));
+                    else
+                        listaFiltrada = ListaArticulos.FindAll(x => x.CodArticulo.ToUpper() == busqueda.ToUpper());
+                    break;
+                case "Nombre":
+                    if (criterio == "Contiene")
+                        listaFiltrada = ListaArticulos.FindAll(x => x.Nombre.ToUpper().Contains(busqueda.ToUpper()));
+                    else
+                        listaFiltrada = ListaArticulos.FindAll(x => x.Nombre.ToUpper() == busqueda.ToUpper());
+                    break;
+                case "Marca":
+                    if (criterio == "Contiene")
+                        listaFiltrada = ListaArticulos.FindAll(x => x.Marca.Descripcion.ToUpper().Contains(busqueda.ToUpper()));
+                    else
+                        listaFiltrada = ListaArticulos.FindAll(x => x.Marca.Descripcion.ToUpper() == busqueda.ToUpper());
+                    break;
+                case "Categoria":
+                    if (criterio == "Contiene")
+                        listaFiltrada = ListaArticulos.FindAll(x => x.Categoria.Descripcion.ToUpper().Contains(busqueda.ToUpper()));
+                    else
+                        listaFiltrada = ListaArticulos.FindAll(x => x.Categoria.Descripcion.ToUpper() == busqueda.ToUpper());
+                    break;
+                case "Descripcion":
+                    if (criterio == "Contiene")
+                        listaFiltrada = ListaArticulos.FindAll(x => x.Descripcion.ToUpper().Contains(busqueda.ToUpper()));
+                    else
+                        listaFiltrada = ListaArticulos.FindAll(x => x.Descripcion.ToUpper() == busqueda.ToUpper());
+                    break;
+
+                default:
+                    break;
+            }
+
+            if (listaFiltrada.Count == 0)
+            {
+                MessageBox.Show("Busqueda sin resultados");
+            }
+
+            dgvArticulos.DataSource = null; //Siempre hay que hacer una limpieza antes de pisar el DataSource, sino no se actualiza el DataGridView
+            dgvArticulos.DataSource = listaFiltrada;
+            ocultarColumnas();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
