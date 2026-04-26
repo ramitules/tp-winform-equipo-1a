@@ -462,5 +462,22 @@ namespace TPWinForm_equipo_1A
             btnAceptar.Enabled = ValidarCondiciones();
         }
 
+        private void btnEliminarArticulo_Click(object sender, EventArgs e)
+        {
+            ArticuloNegocio negocio = new ArticuloNegocio();          
+            try
+            {
+                DialogResult respuesta = MessageBox.Show("Confirmar eliminacion?", "Eliminando", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (respuesta == DialogResult.Yes)
+                {                 
+                    negocio.eliminar(articuloTraido.ID);
+                    Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
     }
 }
