@@ -17,9 +17,9 @@ namespace TPWinForm_equipo_1A
     public partial class FrmArticuloAgregar : Form
     {
         private Articulo articuloTraido;
-        private List<string> listaVieja;
+        private List<string> listaVieja = new List<string>();
         private List<string> listaNueva;
-        private bool cambiosEnCampos = false;
+        private bool articuloNuevo = true;
         public FrmArticuloAgregar()
         {
             InitializeComponent();
@@ -28,6 +28,7 @@ namespace TPWinForm_equipo_1A
         public FrmArticuloAgregar(Articulo art) // creo un nuevo constructor con un parametro del tipo Articulo. Si se instancia con un argumento del tipo Articulo se setean todos los valores del campo con las propiedades del objeto
         {
             InitializeComponent();
+            articuloNuevo = false;
             articuloTraido = art; //creo una variable del tipo Articulo y le asigno el valor del parametro que me llega para usarlo como comparador.
             this.listaVieja = art.Imagen;
             this.Text = "Descripcion Artículo"; //Esto le cambia el titulo a la ventana.
@@ -94,17 +95,17 @@ namespace TPWinForm_equipo_1A
         {
  
         }
-
         private void btnAgregarArticulo_Click(object sender, EventArgs e)
         {
 
         }
-
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Close();
 
         }
+
+
 
         //Evento para eliminar
         private void txtBoxCodArticulo_KeyPress(object sender, KeyPressEventArgs e)
@@ -142,8 +143,9 @@ namespace TPWinForm_equipo_1A
         {
             string urlImagenNueva = txtBoxImagen.Text;
             mostrarImagen(urlImagenNueva);
-            btnAceptar.Enabled = existenCambios();
-        }
+            if (!articuloNuevo)
+                btnAceptar.Enabled = existenCambios();
+        }  //Este capas ya no sirva
         public void mostrarImagen(string url)
         {
             try
@@ -225,6 +227,10 @@ namespace TPWinForm_equipo_1A
 
         public bool validarCambioCampos()
         {
+            if (articuloNuevo)
+            {
+                return true;
+            }
             string codNuevo = txtBoxCodArticulo.Text;
             string nombreNuevo = txtBoxNombre.Text;
             string descripcionNueva = txtBoxDescripcion.Text;
@@ -237,13 +243,13 @@ namespace TPWinForm_equipo_1A
             int marcaNueva = cBoxMarca.SelectedValue is int m ? m : -1;
             int categoriaNueva = cBoxCategoria.SelectedValue is int c ? c : -1;
            
-            string imagenVieja = (articuloTraido.Imagen != null && articuloTraido.Imagen.Count > 0) ? articuloTraido.Imagen[0] : "";
+            //string imagenVieja = (articuloTraido.Imagen != null && articuloTraido.Imagen.Count > 0) ? articuloTraido.Imagen[0] : ""; ///////////////////////////////////////
 
             if (codNuevo.Trim() != articuloTraido.CodArticulo.Trim() ||
                 nombreNuevo.Trim() != articuloTraido.Nombre.Trim() ||
                 descripcionNueva.Trim() != articuloTraido.Descripcion.Trim() ||
                 precioNuevo != articuloTraido.Precio ||
-                imagenNueva.Trim() != imagenVieja.Trim() ||
+                //imagenNueva.Trim() != imagenVieja.Trim() ||/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 marcaNueva != articuloTraido.Marca.Id ||
                 categoriaNueva != articuloTraido.Categoria.Id)
             {
@@ -251,26 +257,26 @@ namespace TPWinForm_equipo_1A
             }
 
             return false;
-        }
+        }// este lo cree de nuevo mas reorganizado para que centralice todo
 
         private void txtBoxDescripcion_TextChanged(object sender, EventArgs e)
         {
-            btnAceptar.Enabled = existenCambios();
+            refrescarBotonAceptar();
         }
 
         private void cBoxMarca_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnAceptar.Enabled = existenCambios();
+            refrescarBotonAceptar();
         }
 
         private void cBoxCategoria_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnAceptar.Enabled = existenCambios();
+            refrescarBotonAceptar();
         }
 
         private void numPrecio_ValueChanged(object sender, EventArgs e)
         { 
-            btnAceptar.Enabled = existenCambios();
+            refrescarBotonAceptar();
         }
 
         private void btnGestionarImagen_Click(object sender, EventArgs e)
@@ -284,11 +290,12 @@ namespace TPWinForm_equipo_1A
 
                     if (huboCambioEnImagenes(articuloTraido.Imagen, listaNueva))
                     {
-                        this.listaNueva = listaNueva;
+                        this.listaNueva = gestImg.ListaImagenesFinal;
+
                         string imagenAMostrar = (listaNueva != null && listaNueva.Count > 0) ? listaNueva[0] : "";
                         mostrarImagen(imagenAMostrar);
-                        articuloTraido.Imagen = listaNueva;
-                        btnAceptar.Enabled = (this.listaNueva != this.listaVieja);
+
+                        refrescarBotonAceptar();
                     }
                     else
                     {
@@ -334,21 +341,126 @@ namespace TPWinForm_equipo_1A
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             AccesoDatos datos = new AccesoDatos();
-            datos.ConsultaDatos("DELETE FROM IMAGENES where IdArticulo = @Id");
-            datos.SetParametro("@Id", articuloTraido.ID);
-            datos.EjecutarAccion();
-            if (articuloTraido.Imagen.Count > 0)
+            try
             {
-                foreach (var imagen in articuloTraido.Imagen)
-                {   
-                    datos = new AccesoDatos();
-                    datos.ConsultaDatos("INSERT INTO IMAGENES VALUES (@Id, @Imagen)");
-                    datos.SetParametro("@Id", articuloTraido.ID);
-                    datos.SetParametro("@Imagen", imagen);
+                int idArticulo;
+                if (articuloNuevo)
+                {
+                    datos.ConsultaDatos("INSERT INTO ARTICULOS(Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio) VALUES (@codigo, @nombre, @desc, @idMarca, @idCat, @precio) SELECT CAST(SCOPE_IDENTITY() AS INT);");
+
+                    datos.SetParametro("@codigo", txtBoxCodArticulo.Text);
+                    datos.SetParametro("@nombre", txtBoxNombre.Text);
+                    datos.SetParametro("@desc", string.IsNullOrWhiteSpace(txtBoxDescripcion.Text) ? (object)DBNull.Value : txtBoxDescripcion.Text);
+                    datos.SetParametro("@idMarca", cBoxMarca.SelectedValue);
+                    datos.SetParametro("@idCat", cBoxCategoria.SelectedValue);
+                    datos.SetParametro("@precio", numPrecio.Value);
+                    idArticulo = datos.EjecutarEscalar();
+                    
+
+                }
+                else
+                {
+                    idArticulo = articuloTraido.ID;
+
+                    datos.ConsultaDatos("UPDATE ARTICULOS SET Codigo = @codigo, Nombre = @nombre, Descripcion = @desc, IdMarca = @idMarca, IdCategoria = @idCat, Precio = @precio WHERE Id = @id");
+                    datos.SetParametro("@codigo", txtBoxCodArticulo.Text);
+                    datos.SetParametro("@nombre", txtBoxNombre.Text);
+                    datos.SetParametro("@desc", string.IsNullOrWhiteSpace(txtBoxDescripcion.Text) ? (object)DBNull.Value : txtBoxDescripcion.Text);
+                    datos.SetParametro("@idMarca", cBoxMarca.SelectedValue);
+                    datos.SetParametro("@idCat", cBoxCategoria.SelectedValue);
+                    datos.SetParametro("@precio", numPrecio.Value);
+                    datos.SetParametro("@id", idArticulo);
                     datos.EjecutarAccion();
                 }
+                AccesoDatos datosImg = new AccesoDatos();
+                datosImg.ConsultaDatos("DELETE FROM IMAGENES where IdArticulo = @Id");
+                datosImg.SetParametro("@Id", idArticulo);
+                datosImg.EjecutarAccion();
+                if (this.listaNueva != null && this.listaNueva.Count > 0)
+                {
+                    foreach (var imagen in this.listaNueva)
+                    {   
+                        datosImg = new AccesoDatos();
+                        try
+                        {
+                            datosImg.ConsultaDatos("INSERT INTO IMAGENES (IdArticulo, ImagenUrl) VALUES (@Id, @Imagen)");
+                            datosImg.SetParametro("@Id", idArticulo);
+                            datosImg.SetParametro("@Imagen", imagen);
+                            datosImg.EjecutarAccion();
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                        finally
+                        {
+                            datosImg.CerrarConexion();
+                        }
+                    }
+                }
+                MessageBox.Show("Guardado correctamente");
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrio un error al guardar imagen: " + ex.Message);
             }
             Close();
         }
+        private bool ValidarCondiciones()
+        {
+            if (string.IsNullOrWhiteSpace(txtBoxCodArticulo.Text) ||
+                string.IsNullOrWhiteSpace(txtBoxNombre.Text) ||
+                numPrecio.Value <= 0)
+            {
+                return false;
+            }
+
+            
+            if (articuloNuevo)
+            {
+                return true;
+            }
+            int idMarca = cBoxMarca.SelectedValue != null ? (int)cBoxMarca.SelectedValue : 0;
+            int idCategoria = cBoxCategoria.SelectedValue != null ? (int)cBoxCategoria.SelectedValue : 0;
+
+            //Este codigo es para ver si existen cambios
+            bool huboCambioEnTexto =
+                txtBoxCodArticulo.Text.Trim() != articuloTraido.CodArticulo.Trim() ||
+                txtBoxNombre.Text.Trim() != articuloTraido.Nombre.Trim() ||
+                txtBoxDescripcion.Text.Trim() != articuloTraido.Descripcion.Trim() ||
+                numPrecio.Value != articuloTraido.Precio ||
+                idMarca != articuloTraido.Marca.Id ||
+                idCategoria != articuloTraido.Categoria.Id;
+
+            bool huboCambioFotos = VerificarCambioFotos(listaVieja, listaNueva);
+
+            return huboCambioEnTexto || huboCambioFotos;
+        }
+        private bool VerificarCambioFotos(List<string> vieja, List<string> nueva)
+        {
+            if (vieja == null || nueva == null) 
+            {
+                return vieja != nueva;
+            }
+            if (vieja.Count != nueva.Count)
+            { 
+                return true; 
+            }
+
+            for (int i = 0; i < vieja.Count; i++)
+            {
+                if (vieja[i].Trim() != nueva[i].Trim())
+                {
+                    return true;
+                } 
+            }
+            return false;
+        }
+        private void refrescarBotonAceptar()
+        {
+            btnAceptar.Enabled = ValidarCondiciones();
+        }
+
     }
 }

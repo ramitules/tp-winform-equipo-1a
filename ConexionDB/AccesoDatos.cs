@@ -89,5 +89,22 @@ namespace ConexionDB
                 lector.Close();
             conexion.Close();
         }
+        public int EjecutarEscalar()
+        {
+            try
+            {
+                conexion.Open();
+                comando.Connection = conexion;
+                return (int)comando.ExecuteScalar();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                CerrarConexion();
+            }
+        }
     }
 }

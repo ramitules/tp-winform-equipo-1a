@@ -13,7 +13,7 @@ namespace Negocio
 {
     public class ArticuloNegocio
     {
-        private string querySelectTodo = "SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Id AS MarcaId, M.Descripcion AS Marca, A.Precio, C.Id AS CategoriaId, C.Descripcion AS Categoria, ISNULL(I.ImagenUrl, 'NADA') AS ImagenUrl FROM ARTICULOS A INNER JOIN MARCAS M ON A.IdMarca = M.Id INNER JOIN CATEGORIAS C ON A.IdCategoria = C.Id LEFT JOIN IMAGENES I ON A.Id = I.IdArticulo";
+        private string querySelectTodo = "SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Id AS MarcaId, M.Descripcion AS Marca, A.Precio, C.Id AS CategoriaId, C.Descripcion AS Categoria, I.ImagenUrl AS ImagenUrl FROM ARTICULOS A INNER JOIN MARCAS M ON A.IdMarca = M.Id INNER JOIN CATEGORIAS C ON A.IdCategoria = C.Id LEFT JOIN IMAGENES I ON A.Id = I.IdArticulo";
         private string queryInsertArticulo = "INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio) VALUES (@cod, @name, @desc, @idMarca, @idCateg, @precio)";
         private string querySelectId = "SELECT TOP 1 Id FROM ARTICULOS ORDER BY Id DESC";
         private string queryInsertImg = "INSERT INTO IMAGENES (IdArticulo, ImagenUrl) VALUES (@idArticulo, @imgUrl)";
@@ -40,16 +40,16 @@ namespace Negocio
                     {
                         Articulo aux = new Articulo();
                         aux.ID = (int)Datos.Lector["Id"];
-                        aux.CodArticulo = (string)Datos.Lector["Codigo"];
-                        aux.Nombre = (string)Datos.Lector["Nombre"];
-                        aux.Descripcion = (string)Datos.Lector["Descripcion"];
-                        aux.Precio = (decimal)Datos.Lector["Precio"];
+                        aux.CodArticulo = Datos.Lector["Codigo"] is DBNull ? "" : (string)Datos.Lector["Codigo"];
+                        aux.Nombre = Datos.Lector["Nombre"] is DBNull ? "" : (string)Datos.Lector["Nombre"];
+                        aux.Descripcion = Datos.Lector["Descripcion"] is DBNull ? "" : (string)Datos.Lector["Descripcion"];
+                        aux.Precio = Datos.Lector["Precio"] is DBNull ? 0 : (decimal)Datos.Lector["Precio"];
 
                         aux.Marca = new Marca((int)Datos.Lector["MarcaId"], (string)Datos.Lector["Marca"]);
 
                         aux.Categoria = new Categoria((int)Datos.Lector["CategoriaId"], (string)Datos.Lector["Categoria"]);
 
-                        aux.Imagen.Add((string)Datos.Lector["ImagenUrl"]);
+                        aux.Imagen.Add(Datos.Lector["ImagenUrl"] is DBNull ? "" : (string)Datos.Lector["ImagenUrl"]);
 
                         lista.Add(aux);
                         
@@ -57,7 +57,7 @@ namespace Negocio
                     }
                     else
                     {
-                        lista[lista.Count() - 1].Imagen.Add((string)Datos.Lector["ImagenUrl"]);
+                        lista[lista.Count() - 1].Imagen.Add(Datos.Lector["ImagenUrl"] is DBNull ? "" : (string)Datos.Lector["ImagenUrl"]);
                     }
                 }
 

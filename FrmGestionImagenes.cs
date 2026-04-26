@@ -26,9 +26,9 @@ namespace TPWinForm_equipo_1A
             TextBox[] tbxImagenes = { tbxImagen1, tbxImagen2, tbxImagen3, tbxImagen4, tbxImagen5 };
             for (int i = 0; i < tbxImagenes.Length; i++)
             {
-                if (i < art.Imagen.Count && art.Imagen[i] != null)
+                if (i < art.Imagen.Count && art.Imagen != null)
                 {
-                    tbxImagenes[i].Text = art.Imagen[i];
+                    tbxImagenes[i].Text = art.Imagen[i] ?? "";
                 }
                 else
                 {

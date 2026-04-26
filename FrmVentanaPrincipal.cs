@@ -87,7 +87,7 @@ namespace TPWinForm_equipo_1A
             {
                 pbxUrl.Load("https://media.istockphoto.com/id/1980276924/es/vector/sin-elemento-gr%C3%A1fico-en-miniatura-de-la-foto-no-se-ha-encontrado-ninguna-imagen-o-est%C3%A1.jpg?s=612x612&w=0&k=20&c=artWlQoi5R1edWQBv9LfzeLXupOcH_alZnMgvXdYkF4=");
             }
-        }
+        }// clase helper
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
         {
@@ -95,6 +95,15 @@ namespace TPWinForm_equipo_1A
                 return;
             articuloActual = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
             indiceActual = 0;
+            if (articuloActual.Imagen != null && articuloActual.Imagen.Count > 0)
+            {
+                string img = articuloActual.Imagen[indiceActual];
+                mostrarImagen(img);
+            }
+            else
+            {               
+                mostrarImagen("mostrarNada");
+            }
             string url = articuloActual.Imagen[indiceActual] != null ? articuloActual.Imagen[indiceActual] : "";
             mostrarImagen(url);
             validarBotonAnteriorPosterior();
