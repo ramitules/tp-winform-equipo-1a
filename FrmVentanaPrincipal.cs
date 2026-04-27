@@ -139,6 +139,10 @@ namespace TPWinForm_equipo_1A
         {
             // Validacion: al menos una fila seleccionada
             if (dgvArticulos.CurrentRow == null)
+            {   
+                MessageBox.Show("No hay ningun articulo seleccionado");
+                return;
+            }
                 return;
 
             ArticuloNegocio negocio = new ArticuloNegocio();
@@ -165,7 +169,12 @@ namespace TPWinForm_equipo_1A
         {
             // Validacion: al menos una fila seleccionada
             if (dgvArticulos.CurrentRow == null)
+            {
+                MessageBox.Show("No hay ningun articulo seleccionado");
                 return;
+            }
+           
+              
 
             Articulo seleccionado;
             string codigo = dgvArticulos.CurrentRow.Cells["CodArticulo"].Value.ToString();
