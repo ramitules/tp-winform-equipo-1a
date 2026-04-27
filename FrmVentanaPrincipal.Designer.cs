@@ -31,7 +31,6 @@
             this.btnArticuloAgregar = new System.Windows.Forms.Button();
             this.btnArticuloEliminar = new System.Windows.Forms.Button();
             this.dgvArticulos = new System.Windows.Forms.DataGridView();
-            this.pbxUrl = new System.Windows.Forms.PictureBox();
             this.btnAnterior = new System.Windows.Forms.Button();
             this.btnPosterior = new System.Windows.Forms.Button();
             this.lblBusqueda = new System.Windows.Forms.Label();
@@ -46,9 +45,12 @@
             this.txtBoxBusquedaAvanzada = new System.Windows.Forms.TextBox();
             this.lblBusquedaAvanzada = new System.Windows.Forms.Label();
             this.lblResultadoBusqueda = new System.Windows.Forms.Label();
+            this.btnBorrarFiltroAv = new System.Windows.Forms.Button();
+            this.btnBorrarFiltroRapido = new System.Windows.Forms.Button();
+            this.pbxUrl = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxUrl)).BeginInit();
             this.gBoxBusquedaAvanzada.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxUrl)).BeginInit();
             this.SuspendLayout();
             // 
             // btnArticuloAgregar
@@ -88,16 +90,6 @@
             this.dgvArticulos.TabIndex = 4;
             this.dgvArticulos.SelectionChanged += new System.EventHandler(this.dgvArticulos_SelectionChanged);
             // 
-            // pbxUrl
-            // 
-            this.pbxUrl.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.pbxUrl.Location = new System.Drawing.Point(822, 67);
-            this.pbxUrl.Name = "pbxUrl";
-            this.pbxUrl.Size = new System.Drawing.Size(234, 250);
-            this.pbxUrl.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbxUrl.TabIndex = 5;
-            this.pbxUrl.TabStop = false;
-            // 
             // btnAnterior
             // 
             this.btnAnterior.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -127,7 +119,7 @@
             this.lblBusqueda.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblBusqueda.AutoSize = true;
-            this.lblBusqueda.Location = new System.Drawing.Point(136, 20);
+            this.lblBusqueda.Location = new System.Drawing.Point(136, 22);
             this.lblBusqueda.Name = "lblBusqueda";
             this.lblBusqueda.Size = new System.Drawing.Size(90, 13);
             this.lblBusqueda.TabIndex = 8;
@@ -137,7 +129,7 @@
             // 
             this.txtBoxBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxBuscar.Location = new System.Drawing.Point(232, 17);
+            this.txtBoxBuscar.Location = new System.Drawing.Point(232, 18);
             this.txtBoxBuscar.Name = "txtBoxBuscar";
             this.txtBoxBuscar.Size = new System.Drawing.Size(173, 20);
             this.txtBoxBuscar.TabIndex = 9;
@@ -172,7 +164,6 @@
             this.cboBoxCampo.Name = "cboBoxCampo";
             this.cboBoxCampo.Size = new System.Drawing.Size(88, 21);
             this.cboBoxCampo.TabIndex = 13;
-            this.cboBoxCampo.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // cboBoxCriterio
             // 
@@ -200,12 +191,12 @@
             this.lblCriterio.Size = new System.Drawing.Size(39, 13);
             this.lblCriterio.TabIndex = 19;
             this.lblCriterio.Text = "Criterio";
-            this.lblCriterio.Click += new System.EventHandler(this.label1_Click);
             // 
             // gBoxBusquedaAvanzada
             // 
             this.gBoxBusquedaAvanzada.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gBoxBusquedaAvanzada.Controls.Add(this.btnBorrarFiltroAv);
             this.gBoxBusquedaAvanzada.Controls.Add(this.txtBoxBusquedaAvanzada);
             this.gBoxBusquedaAvanzada.Controls.Add(this.lblBusquedaAvanzada);
             this.gBoxBusquedaAvanzada.Controls.Add(this.cboBoxCriterio);
@@ -241,18 +232,49 @@
             this.lblResultadoBusqueda.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblResultadoBusqueda.AutoSize = true;
-            this.lblResultadoBusqueda.Location = new System.Drawing.Point(411, 20);
+            this.lblResultadoBusqueda.Location = new System.Drawing.Point(458, 22);
             this.lblResultadoBusqueda.Name = "lblResultadoBusqueda";
             this.lblResultadoBusqueda.Size = new System.Drawing.Size(216, 13);
             this.lblResultadoBusqueda.TabIndex = 21;
             this.lblResultadoBusqueda.Text = "Sin resultados en Cod. de Artículo y Nombre";
             this.lblResultadoBusqueda.Visible = false;
             // 
+            // btnBorrarFiltroAv
+            // 
+            this.btnBorrarFiltroAv.Image = global::TPWinForm_equipo_1A.Properties.Resources.limpia;
+            this.btnBorrarFiltroAv.Location = new System.Drawing.Point(542, 21);
+            this.btnBorrarFiltroAv.Name = "btnBorrarFiltroAv";
+            this.btnBorrarFiltroAv.Size = new System.Drawing.Size(29, 23);
+            this.btnBorrarFiltroAv.TabIndex = 23;
+            this.btnBorrarFiltroAv.UseVisualStyleBackColor = true;
+            this.btnBorrarFiltroAv.Click += new System.EventHandler(this.btnBorrarFiltroAv_Click);
+            // 
+            // btnBorrarFiltroRapido
+            // 
+            this.btnBorrarFiltroRapido.Image = global::TPWinForm_equipo_1A.Properties.Resources.limpia;
+            this.btnBorrarFiltroRapido.Location = new System.Drawing.Point(411, 17);
+            this.btnBorrarFiltroRapido.Name = "btnBorrarFiltroRapido";
+            this.btnBorrarFiltroRapido.Size = new System.Drawing.Size(29, 23);
+            this.btnBorrarFiltroRapido.TabIndex = 22;
+            this.btnBorrarFiltroRapido.UseVisualStyleBackColor = true;
+            this.btnBorrarFiltroRapido.Click += new System.EventHandler(this.btnBorrarFiltroRapido_Click);
+            // 
+            // pbxUrl
+            // 
+            this.pbxUrl.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.pbxUrl.Location = new System.Drawing.Point(822, 67);
+            this.pbxUrl.Name = "pbxUrl";
+            this.pbxUrl.Size = new System.Drawing.Size(234, 250);
+            this.pbxUrl.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbxUrl.TabIndex = 5;
+            this.pbxUrl.TabStop = false;
+            // 
             // FrmVentanaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1084, 455);
+            this.Controls.Add(this.btnBorrarFiltroRapido);
             this.Controls.Add(this.lblResultadoBusqueda);
             this.Controls.Add(this.gBoxBusquedaAvanzada);
             this.Controls.Add(this.btnSeleccionar);
@@ -271,9 +293,9 @@
             this.Text = "Gestion de articulos";
             this.Load += new System.EventHandler(this.VentanaPrincipal_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxUrl)).EndInit();
             this.gBoxBusquedaAvanzada.ResumeLayout(false);
             this.gBoxBusquedaAvanzada.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxUrl)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -298,5 +320,7 @@
         private System.Windows.Forms.Label lblBusquedaAvanzada;
         private System.Windows.Forms.TextBox txtBoxBusquedaAvanzada;
         private System.Windows.Forms.Label lblResultadoBusqueda;
+        private System.Windows.Forms.Button btnBorrarFiltroRapido;
+        private System.Windows.Forms.Button btnBorrarFiltroAv;
     }
 }

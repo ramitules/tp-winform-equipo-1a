@@ -95,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Documentacion\Minutas 15-04.txt" />
+    <None Include="Resources\limpia.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FrmAgregarMarca.resx">
@@ -115,6 +116,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -296,14 +296,18 @@ namespace TPWinForm_equipo_1A
             ocultarColumnas();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void btnBorrarFiltroRapido_Click(object sender, EventArgs e)
         {
-
+            Cargar();
+            txtBoxBuscar.Clear();
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void btnBorrarFiltroAv_Click(object sender, EventArgs e)
         {
-
+            Cargar();
+            cboBoxCampo.SelectedIndex = 0;
+            cboBoxCriterio.SelectedIndex = 0;
+            txtBoxBusquedaAvanzada.Clear();
         }
     }
 }
