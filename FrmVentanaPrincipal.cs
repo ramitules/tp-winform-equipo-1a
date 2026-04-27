@@ -28,18 +28,8 @@ namespace TPWinForm_equipo_1A
         {
             Cargar();
 
-            //Se cargan los desplegables de la busqueda avanzada
-
-            cboBoxCampo.Items.Add("Articulo");
-            cboBoxCampo.Items.Add("Nombre");
-            cboBoxCampo.Items.Add("Marca");
-            cboBoxCampo.Items.Add("Categoria");
-            cboBoxCampo.Items.Add("Descripcion");
-
-            cboBoxCriterio.Items.Add("Contiene");
-            cboBoxCriterio.Items.Add("Exacto");
-
-            //
+            cboBoxCampo.DataSource = new List<string> { "Articulo", "Nombre", "Marca", "Categoria", "Descripcion" };
+            cboBoxCriterio.DataSource = new List<string> { "Contiene", "Exacto" };
         }
 
         /// <summary>
@@ -89,12 +79,13 @@ namespace TPWinForm_equipo_1A
             {
                 pbxUrl.Load("https://media.istockphoto.com/id/1980276924/es/vector/sin-elemento-gr%C3%A1fico-en-miniatura-de-la-foto-no-se-ha-encontrado-ninguna-imagen-o-est%C3%A1.jpg?s=612x612&w=0&k=20&c=artWlQoi5R1edWQBv9LfzeLXupOcH_alZnMgvXdYkF4=");
             }
-        }// clase helper
+        }
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvArticulos.CurrentRow == null)
                 return;
+
             articuloActual = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
             indiceActual = 0;
             if (articuloActual.Imagen != null && articuloActual.Imagen.Count > 0)

@@ -57,7 +57,7 @@
             // 
             this.tbxImagen1.Location = new System.Drawing.Point(79, 44);
             this.tbxImagen1.Name = "tbxImagen1";
-            this.tbxImagen1.Size = new System.Drawing.Size(100, 20);
+            this.tbxImagen1.Size = new System.Drawing.Size(137, 20);
             this.tbxImagen1.TabIndex = 1;
             this.tbxImagen1.Click += new System.EventHandler(this.tbxImagen1_Click);
             this.tbxImagen1.TextChanged += new System.EventHandler(this.tbxImagen1_TextChanged);
@@ -102,7 +102,7 @@
             // 
             this.tbxImagen2.Location = new System.Drawing.Point(79, 75);
             this.tbxImagen2.Name = "tbxImagen2";
-            this.tbxImagen2.Size = new System.Drawing.Size(100, 20);
+            this.tbxImagen2.Size = new System.Drawing.Size(137, 20);
             this.tbxImagen2.TabIndex = 6;
             this.tbxImagen2.Click += new System.EventHandler(this.tbxImagen2_Click);
             this.tbxImagen2.TextChanged += new System.EventHandler(this.tbxImagen2_TextChanged);
@@ -111,7 +111,7 @@
             // 
             this.tbxImagen3.Location = new System.Drawing.Point(79, 105);
             this.tbxImagen3.Name = "tbxImagen3";
-            this.tbxImagen3.Size = new System.Drawing.Size(100, 20);
+            this.tbxImagen3.Size = new System.Drawing.Size(137, 20);
             this.tbxImagen3.TabIndex = 7;
             this.tbxImagen3.Click += new System.EventHandler(this.tbxImagen3_Click);
             this.tbxImagen3.TextChanged += new System.EventHandler(this.tbxImagen3_TextChanged);
@@ -120,7 +120,7 @@
             // 
             this.tbxImagen4.Location = new System.Drawing.Point(79, 136);
             this.tbxImagen4.Name = "tbxImagen4";
-            this.tbxImagen4.Size = new System.Drawing.Size(100, 20);
+            this.tbxImagen4.Size = new System.Drawing.Size(137, 20);
             this.tbxImagen4.TabIndex = 8;
             this.tbxImagen4.Click += new System.EventHandler(this.tbxImagen4_Click);
             this.tbxImagen4.TextChanged += new System.EventHandler(this.tbxImagen4_TextChanged);
@@ -129,7 +129,7 @@
             // 
             this.tbxImagen5.Location = new System.Drawing.Point(79, 167);
             this.tbxImagen5.Name = "tbxImagen5";
-            this.tbxImagen5.Size = new System.Drawing.Size(100, 20);
+            this.tbxImagen5.Size = new System.Drawing.Size(137, 20);
             this.tbxImagen5.TabIndex = 9;
             this.tbxImagen5.Click += new System.EventHandler(this.tbxImagen5_Click);
             this.tbxImagen5.TextChanged += new System.EventHandler(this.tbxImagen5_TextChanged);
@@ -139,6 +139,7 @@
             this.pbxImagenGestion.Location = new System.Drawing.Point(255, 47);
             this.pbxImagenGestion.Name = "pbxImagenGestion";
             this.pbxImagenGestion.Size = new System.Drawing.Size(154, 140);
+            this.pbxImagenGestion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbxImagenGestion.TabIndex = 10;
             this.pbxImagenGestion.TabStop = false;
             // 
@@ -181,7 +182,7 @@
             this.Controls.Add(this.tbxImagen1);
             this.Controls.Add(this.lblImagen1);
             this.Name = "FrmGestionImagenes";
-            this.Text = "GestionImagenes";
+            this.Text = "Gestion Imagenes";
             this.Load += new System.EventHandler(this.FrmGestionImagenes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbxImagenGestion)).EndInit();
             this.ResumeLayout(false);
