@@ -44,11 +44,7 @@ namespace TPWinForm_equipo_1A
                 ListaArticulos = negocio.listar();
 
                 dgvArticulos.DataSource = ListaArticulos;
-                //dgvArticulos.Columns["ID"].Visible = false;
                 ocultarColumnas();
-
-                dgvArticulos.DataSource = ListaArticulos;
-
                 mostrarImagen(ListaArticulos[0].Imagen[0]);
             }
             catch (Exception ex)
@@ -139,11 +135,6 @@ namespace TPWinForm_equipo_1A
             }
         }
 
-        private void btnArticuloModificar_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void btnArticuloEliminar_Click(object sender, EventArgs e)
         {
             // Validacion: al menos una fila seleccionada
@@ -170,7 +161,7 @@ namespace TPWinForm_equipo_1A
             }
         }
 
-        private void btnSeleccionar_Click(object sender, EventArgs e)
+        private void SeleccionarFila()
         {
             // Validacion: al menos una fila seleccionada
             if (dgvArticulos.CurrentRow == null)
@@ -183,6 +174,11 @@ namespace TPWinForm_equipo_1A
             FrmArticuloAgregar modif = new FrmArticuloAgregar(seleccionado);
             modif.ShowDialog();
             Cargar();
+        }
+
+        private void btnSeleccionar_Click(object sender, EventArgs e)
+        {
+            SeleccionarFila();
         }
         private void txtBoxBuscar_TextChanged(object sender, EventArgs e)
         {
@@ -308,6 +304,11 @@ namespace TPWinForm_equipo_1A
             cboBoxCampo.SelectedIndex = 0;
             cboBoxCriterio.SelectedIndex = 0;
             txtBoxBusquedaAvanzada.Clear();
+        }
+
+        private void dgvArticulos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            SeleccionarFila();
         }
     }
 }
