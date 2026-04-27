@@ -28,7 +28,7 @@ namespace TPWinForm_equipo_1A
         {
             Cargar();
 
-            cboBoxCampo.DataSource = new List<string> { "Articulo", "Nombre", "Marca", "Categoria", "Descripcion" };
+            cboBoxCampo.DataSource = new List<string> { "Cod.Articulo", "Nombre", "Marca", "Categoria", "Descripcion" };
             cboBoxCriterio.DataSource = new List<string> { "Contiene", "Exacto" };
         }
 
@@ -143,8 +143,7 @@ namespace TPWinForm_equipo_1A
                 MessageBox.Show("No hay ningun articulo seleccionado");
                 return;
             }
-                return;
-
+     
             ArticuloNegocio negocio = new ArticuloNegocio();
             Articulo seleccionado;
             try
