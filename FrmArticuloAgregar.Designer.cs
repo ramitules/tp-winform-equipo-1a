@@ -44,8 +44,6 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.lblCodigo = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
-            this.pbxImagenNueva = new System.Windows.Forms.PictureBox();
-            this.btnAgregarMarca = new System.Windows.Forms.Button();
             this.btnAgregarCategoria = new System.Windows.Forms.Button();
             this.btnEliminarMarca = new System.Windows.Forms.Button();
             this.btnEliminarCategoria = new System.Windows.Forms.Button();
@@ -53,6 +51,8 @@
             this.btnEliminarArticulo = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.labelImagen = new System.Windows.Forms.Label();
+            this.btnAgregarMarca = new System.Windows.Forms.Button();
+            this.pbxImagenNueva = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.numPrecio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxImagenNueva)).BeginInit();
             this.SuspendLayout();
@@ -87,7 +87,7 @@
             // labelCategoria
             // 
             this.labelCategoria.AutoSize = true;
-            this.labelCategoria.Location = new System.Drawing.Point(31, 184);
+            this.labelCategoria.Location = new System.Drawing.Point(31, 185);
             this.labelCategoria.Name = "labelCategoria";
             this.labelCategoria.Size = new System.Drawing.Size(57, 13);
             this.labelCategoria.TabIndex = 4;
@@ -96,7 +96,7 @@
             // labelMarca
             // 
             this.labelMarca.AutoSize = true;
-            this.labelMarca.Location = new System.Drawing.Point(31, 157);
+            this.labelMarca.Location = new System.Drawing.Point(31, 158);
             this.labelMarca.Name = "labelMarca";
             this.labelMarca.Size = new System.Drawing.Size(40, 13);
             this.labelMarca.TabIndex = 5;
@@ -212,31 +212,12 @@
             this.lblNombre.TabIndex = 21;
             this.lblNombre.Text = "* Campo Obligatorio";
             // 
-            // pbxImagenNueva
-            // 
-            this.pbxImagenNueva.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbxImagenNueva.Location = new System.Drawing.Point(390, 50);
-            this.pbxImagenNueva.Name = "pbxImagenNueva";
-            this.pbxImagenNueva.Size = new System.Drawing.Size(250, 302);
-            this.pbxImagenNueva.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbxImagenNueva.TabIndex = 22;
-            this.pbxImagenNueva.TabStop = false;
-            // 
-            // btnAgregarMarca
-            // 
-            this.btnAgregarMarca.Location = new System.Drawing.Point(256, 154);
-            this.btnAgregarMarca.Name = "btnAgregarMarca";
-            this.btnAgregarMarca.Size = new System.Drawing.Size(31, 21);
-            this.btnAgregarMarca.TabIndex = 23;
-            this.btnAgregarMarca.Text = "+";
-            this.btnAgregarMarca.UseVisualStyleBackColor = true;
-            this.btnAgregarMarca.Click += new System.EventHandler(this.btnAgregarMarca_Click);
-            // 
             // btnAgregarCategoria
             // 
-            this.btnAgregarCategoria.Location = new System.Drawing.Point(256, 180);
+            this.btnAgregarCategoria.Image = global::TPWinForm_equipo_1A.Properties.Resources.agregar;
+            this.btnAgregarCategoria.Location = new System.Drawing.Point(256, 179);
             this.btnAgregarCategoria.Name = "btnAgregarCategoria";
-            this.btnAgregarCategoria.Size = new System.Drawing.Size(31, 21);
+            this.btnAgregarCategoria.Size = new System.Drawing.Size(31, 24);
             this.btnAgregarCategoria.TabIndex = 24;
             this.btnAgregarCategoria.Text = "+";
             this.btnAgregarCategoria.UseVisualStyleBackColor = true;
@@ -244,19 +225,20 @@
             // 
             // btnEliminarMarca
             // 
-            this.btnEliminarMarca.Location = new System.Drawing.Point(293, 154);
+            this.btnEliminarMarca.Image = global::TPWinForm_equipo_1A.Properties.Resources.quitar;
+            this.btnEliminarMarca.Location = new System.Drawing.Point(293, 152);
             this.btnEliminarMarca.Name = "btnEliminarMarca";
-            this.btnEliminarMarca.Size = new System.Drawing.Size(31, 21);
+            this.btnEliminarMarca.Size = new System.Drawing.Size(31, 24);
             this.btnEliminarMarca.TabIndex = 25;
-            this.btnEliminarMarca.Text = "-";
             this.btnEliminarMarca.UseVisualStyleBackColor = true;
             this.btnEliminarMarca.Click += new System.EventHandler(this.btnEliminarMarca_Click);
             // 
             // btnEliminarCategoria
             // 
-            this.btnEliminarCategoria.Location = new System.Drawing.Point(293, 181);
+            this.btnEliminarCategoria.Image = global::TPWinForm_equipo_1A.Properties.Resources.quitar;
+            this.btnEliminarCategoria.Location = new System.Drawing.Point(293, 179);
             this.btnEliminarCategoria.Name = "btnEliminarCategoria";
-            this.btnEliminarCategoria.Size = new System.Drawing.Size(31, 21);
+            this.btnEliminarCategoria.Size = new System.Drawing.Size(31, 24);
             this.btnEliminarCategoria.TabIndex = 26;
             this.btnEliminarCategoria.Text = "-";
             this.btnEliminarCategoria.UseVisualStyleBackColor = true;
@@ -303,6 +285,26 @@
             this.labelImagen.Size = new System.Drawing.Size(56, 13);
             this.labelImagen.TabIndex = 3;
             this.labelImagen.Text = "Imagenes:";
+            // 
+            // btnAgregarMarca
+            // 
+            this.btnAgregarMarca.Image = global::TPWinForm_equipo_1A.Properties.Resources.agregar;
+            this.btnAgregarMarca.Location = new System.Drawing.Point(256, 152);
+            this.btnAgregarMarca.Name = "btnAgregarMarca";
+            this.btnAgregarMarca.Size = new System.Drawing.Size(31, 24);
+            this.btnAgregarMarca.TabIndex = 23;
+            this.btnAgregarMarca.UseVisualStyleBackColor = true;
+            this.btnAgregarMarca.Click += new System.EventHandler(this.btnAgregarMarca_Click);
+            // 
+            // pbxImagenNueva
+            // 
+            this.pbxImagenNueva.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbxImagenNueva.Location = new System.Drawing.Point(390, 50);
+            this.pbxImagenNueva.Name = "pbxImagenNueva";
+            this.pbxImagenNueva.Size = new System.Drawing.Size(250, 302);
+            this.pbxImagenNueva.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbxImagenNueva.TabIndex = 22;
+            this.pbxImagenNueva.TabStop = false;
             // 
             // FrmArticuloAgregar
             // 

@@ -95,6 +95,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Documentacion\Minutas 15-04.txt" />
+    <None Include="Resources\buscar.png" />
+    <None Include="Resources\quitar.png" />
+    <None Include="Resources\agregar.png" />
     <None Include="Resources\limpia.png" />
   </ItemGroup>
   <ItemGroup>

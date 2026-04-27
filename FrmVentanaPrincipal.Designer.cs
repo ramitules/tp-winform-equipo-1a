@@ -45,8 +45,8 @@
             this.txtBoxBusquedaAvanzada = new System.Windows.Forms.TextBox();
             this.lblBusquedaAvanzada = new System.Windows.Forms.Label();
             this.lblResultadoBusqueda = new System.Windows.Forms.Label();
-            this.btnBorrarFiltroAv = new System.Windows.Forms.Button();
             this.btnBorrarFiltroRapido = new System.Windows.Forms.Button();
+            this.btnBorrarFiltroAv = new System.Windows.Forms.Button();
             this.pbxUrl = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             this.gBoxBusquedaAvanzada.SuspendLayout();
@@ -140,11 +140,14 @@
             // 
             // btnBuscar
             // 
+            this.btnBuscar.Image = global::TPWinForm_equipo_1A.Properties.Resources.buscar;
+            this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnBuscar.Location = new System.Drawing.Point(577, 21);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscar.Size = new System.Drawing.Size(64, 23);
             this.btnBuscar.TabIndex = 10;
             this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
@@ -242,16 +245,6 @@
             this.lblResultadoBusqueda.Text = "Sin resultados en Cod. de Artículo y Nombre";
             this.lblResultadoBusqueda.Visible = false;
             // 
-            // btnBorrarFiltroAv
-            // 
-            this.btnBorrarFiltroAv.Image = global::TPWinForm_equipo_1A.Properties.Resources.limpia;
-            this.btnBorrarFiltroAv.Location = new System.Drawing.Point(542, 21);
-            this.btnBorrarFiltroAv.Name = "btnBorrarFiltroAv";
-            this.btnBorrarFiltroAv.Size = new System.Drawing.Size(29, 23);
-            this.btnBorrarFiltroAv.TabIndex = 23;
-            this.btnBorrarFiltroAv.UseVisualStyleBackColor = true;
-            this.btnBorrarFiltroAv.Click += new System.EventHandler(this.btnBorrarFiltroAv_Click);
-            // 
             // btnBorrarFiltroRapido
             // 
             this.btnBorrarFiltroRapido.Image = global::TPWinForm_equipo_1A.Properties.Resources.limpia;
@@ -261,6 +254,16 @@
             this.btnBorrarFiltroRapido.TabIndex = 22;
             this.btnBorrarFiltroRapido.UseVisualStyleBackColor = true;
             this.btnBorrarFiltroRapido.Click += new System.EventHandler(this.btnBorrarFiltroRapido_Click);
+            // 
+            // btnBorrarFiltroAv
+            // 
+            this.btnBorrarFiltroAv.Image = global::TPWinForm_equipo_1A.Properties.Resources.limpia;
+            this.btnBorrarFiltroAv.Location = new System.Drawing.Point(542, 21);
+            this.btnBorrarFiltroAv.Name = "btnBorrarFiltroAv";
+            this.btnBorrarFiltroAv.Size = new System.Drawing.Size(29, 23);
+            this.btnBorrarFiltroAv.TabIndex = 23;
+            this.btnBorrarFiltroAv.UseVisualStyleBackColor = true;
+            this.btnBorrarFiltroAv.Click += new System.EventHandler(this.btnBorrarFiltroAv_Click);
             // 
             // pbxUrl
             // 
